@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="64x64" href="/SRC/IMG/Logo/logo64.png" />
+  <link rel="icon" type="image/png" sizes="180x180" href="/SRC/IMG/Logo/logo64.png" />
+  <link rel="apple-touch-icon" href="/SRC/img/Logo/logo180.png" />
+  <!-- Fuentes -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap">
+   <!--Font Awesome (Free)-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" />
+  <!-- Estilos -->
+  <link rel="stylesheet" href="../CSS/global.css">
+  <link rel="stylesheet" href="../CSS/Instrumentos.css">
+  <link rel="stylesheet" href="../CSS/header.css">
+  <link rel="stylesheet" href="../CSS/barraSeleccion.css">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <header class="header">
+    <a href="/index.html"  class="logo">
+      <img src="/SRC/IMG/Logo/logo1.png" alt="">
+      <span class="brand-text">CD.Live</span>
+    </a>
+    <section class="Buscador">
+      <button type="submit" class="buscar">
+        <span class="material-symbols-outlined"> search</span>
+      </button>
+      <input placeholder="Buscar..." class="cajaBusqueda" />
+      <button type="button" class="explorar">
+        <span class="material-symbols-outlined">album</span>
+      </button>
+    </section>
+
+    <nav class="UsuarioCarrito">
+      <a class="Cuenta">
+        <span class="material-symbols-outlined">person</span>
+      </a>
+      <!-- Login oculto -->
+      <section class="LoginCuenta" id="LoginCuenta">
+        <div class="LoginContenedor">
+          <Button class="LoginClose" id="LoginClose">X</Button>
+          <div class="LoginIzquierda">
+            <video src="/SRC/video/308104_medium.mp4" autoplay muted loop></video>
+          </div>
+          <div class="LoginDerecha">
+            <form class="LoginForm" id="LoginForm">
+              <h3>INICIAR SESIÓN</h3>
+              <input type="text" placeholder="EMAIL" required>
+              <input type="password" placeholder="CLAVE" required>
+              <button type="submit">INGRESAR</button>
+
+              <p class="Continuar">O continúa con</p>
+              <div class="Social">
+                <i class="fa-brands fa-google"></i>
+                <i class="fa-brands fa-facebook"></i>
+                <i class="fa-brands fa-apple"></i>
+              </div>
+              <p class="Registro">¿YA TIENES UNA CUENTA?</p>
+              <button class="BotonRegistro" id="BotonRegistro">CREAR CUENTA</button>
+            </form>
+          </div>
+        </div>
+      </section>
+      <!-- Registro oculto -->
+      <section class="RegistroCuenta" id="RegistroCuenta">
+        <div class="RegistroContenedor">
+          <div class="RegistroBotones">
+            <button class="RegistroBack" id="RegistroBack"><i class="fa-solid fa-arrow-left"></i></button>
+            <button class="RegistroClose" id="RegistroClose">X</button>
+          </div>
+          <div class="RegistroIzquierda">
+            <video src="/SRC/video/308104_medium.mp4" autoplay muted loop></video>
+          </div>
+
+          <div class="RegistroDerecha">
+            <form class="RegistroForm" id="RegistroForm">
+              <h3>REGISTRO</h3>
+              <input type="text" placeholder="NOMBRE COMPLETO" required>
+              <input type="tel" placeholder="CELULAR" required>
+              <input type="email" placeholder="EMAIL" required>
+              <input type="email" placeholder="REPETIR EMAIL" required>
+              <input type="text" placeholder="PAÍS" required>
+              <input type="text" placeholder="CIUDAD" required>
+              <input type="password" placeholder="CLAVE" required>
+              <input type="password" placeholder="REPETIR CLAVE" required>
+
+              <button type="submit" class="RegistroBoton">CREAR CUENTA</button>
+            </form>
+          </div>
+        </div>
+      </section>
+      <!-- Registrop de Tarjeta -->
+      <section class="TarjetaCuenta" id="TarjetaCuenta">
+        <div class="TarjetaContenedor">
+          <button class="TarjetaClose" id="TarjetaClose">×</button>
+          <h3>Registrar Tarjeta</h3>
+
+          <form id="TarjetaForm">
+            <label>Número de tarjeta</label>
+            <input type="text" id="NumeroTarjeta" placeholder="1234 5678 9012 3456" maxlength="19" required>
+
+            <label>Nombre del titular</label>
+            <input type="text" id="TitularTarjeta" placeholder="Como aparece en la tarjeta" required>
+
+            <div class="TarjetaDatosExtra">
+              <div>
+                <label>Vencimiento</label>
+                <input type="text" id="FechaVencimiento" placeholder="MM/AA" maxlength="5" required>
+              </div>
+              <div>
+                <label>CVV</label>
+                <input type="text" id="CVV" placeholder="123" maxlength="3" required>
+              </div>
+            </div>
+
+            <button type="submit" class="TarjetaBoton">Guardar tarjeta</button>
+          </form>
+        </div>
+      </section>
+      <a class="carrito">
+        <span class="material-symbols-outlined">shopping_cart</span>
+      </a>
+    </nav>
+  </header>
+
+ 
+
+  <section class="productos">
+     <div class="titulo">
+    <h1>INSTRUMENTOS</h1>
+  </div>
+    <div class="contenedorProductos">
+      <div class="producto" data-categoria="cuerda">
+        <img src="/SRC/IMG/Intrumentos/LogoCuerda.png" alt="Cuerda">
+        <p>Cuerda</p>
+      </div>
+      <div class="producto" data-categoria="viento">
+        <img src="/SRC/IMG/Intrumentos/LogoViento.png" alt="Viento">
+        <p>Viento</p>
+      </div>
+      <div class="producto" data-categoria="percusion">
+        <img src="/SRC/IMG/Intrumentos/LogoPercusion.png" alt="Percusion">
+        <p>Percusion</p>
+      </div>
+      <div class="producto" data-categoria="electricos">
+        <img src="/SRC/IMG/Intrumentos/LogoElectricos.png" alt="Electrónicos">
+        <p>Electrónicos</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="titulo">
+    <h2>Productos</h2>
+  </div>
+
+  <section class="Instrumentos">
+    <div class="contenedor-vendidos" id="lista-Instrumentos"></div>
+  </section>
+
+  
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="#">Acerca de nosotros</a>
+      <a href="#">Contacto</a>
+      <a href="#">Política de Privacidad</a>
+    </div>
+    <div class="footer-social">
+      <a href="https://facebook.com/tu_pagina" aria-label="Facebook" target="_blank" rel="noopener">
+        <i class="fa-brands fa-facebook-f"></i>
+      </a>
+      <a href="https://instagram.com/tu_pagina" aria-label="Instagram" target="_blank" rel="noopener">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+      <a href="https://x.com/tu_pagina" aria-label="X (Twitter)" target="_blank" rel="noopener">
+        <i class="fa-brands fa-x-twitter"></i>
+      </a>
+      <a href="https://wa.me/57XXXXXXXXXX" aria-label="WhatsApp" target="_blank" rel="noopener">
+        <i class="fa-brands fa-whatsapp"></i>
+      </a>
+    </div>
+  </footer>
+
+  <script src="/JS/RegistroTarjeta.js"></script>
+ <script src="/JS/LoginYRegistro.js"></script>
+  <script src="/JS/Instrumentos.js"></script>
+</body>
+
+</html>

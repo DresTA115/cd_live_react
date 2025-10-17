@@ -1,0 +1,218 @@
+.herramienta-impresion {
+    max-width: 1200px;
+    margin: 16px auto 32px;
+    padding: 0 16px;
+    display: flex;
+    gap: 32px;
+    align-items: stretch;
+    flex-wrap: nowrap;
+}
+
+.titulo {
+  text-align: center;
+  font-family: var(--Caligrafia);
+  font-size: var(--titulo-size);
+  line-height: 1.1;
+  margin: 24px 0 12px;
+  color: var(--color-borde);
+}
+
+.previa,
+.panel-opciones {
+    flex: 0 0 520px;
+    max-width: 520px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Previa */
+.previa {
+    align-items: center;
+    gap: 12px;
+    justify-content: center
+}
+
+.lienzo {
+    width: min(520px, 100%);
+    aspect-ratio: 3/4;
+    background: #fff;
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    place-items: center;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, .18), 0 3px 10px rgba(0, 0, 0, .08);
+    display: flex;
+    justify-content: center;
+    height: 100%;
+}
+
+#imagen-previa {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: cover;
+    transition: filter .2s ease, transform .2s ease, outline-width .2s ease, box-shadow .2s ease;
+    --borde-color: var(--color-texto);
+    --borde-grosor: 10px;
+    --borde-estilo: solid;
+    --borde-radio: 4px;
+}
+
+#imagen-previa[src]:not([src=""]) + .ayuda {
+display: none;
+}
+
+.ayuda {
+    font-family: var(--Caligrafia);
+    font-size: 2.0rem; 
+}
+
+/* Panel */
+.panel-opciones {
+    background: var(--color-secundario);
+    color: var(--color-texto);
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, .18), 0 3px 10px rgba(0, 0, 0, .08);
+    gap: 14px;
+    justify-content: center;
+}
+
+.panel-titulo {
+    margin: 0 0 2px;
+    text-align: center;
+    font-weight: 800
+}
+
+/* Grupos y selects como “cuadro de selección” */
+.grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: center;
+}
+
+.etiqueta {
+    font-weight: 800
+}
+
+.concheck {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.selector {
+    width: 100%;
+    padding: 2px 5px;
+    border: 2px solid var(--color-borde);
+    border-radius: 8px;
+    background: #fff;
+    color: #111;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .08);
+    text-align: center;
+}
+
+.selector--archivo {
+    padding: 10px;
+}
+
+/* Precio */
+.precio {
+    margin: 0;
+    background: #062f45;
+    padding: 10px 12px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+}
+
+/* Borde activado en la previa */
+#imagen-previa[data-borde="on"] {
+    outline: var(--borde-grosor) var(--borde-estilo) var(--borde-color);
+    border-radius: var(--borde-radio);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .18);
+}
+
+.controles-borde[hidden] {
+    display: none !important
+}
+
+/* Botón */
+.acciones {
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+
+.btn {
+    background: var(--color-acento);
+    color: var(--color-texto);
+    border: 2px solid var(--color-borde);
+    border-radius: 999px;
+    padding: 12px 16px;
+    font-weight: 800;
+    text-align: center;
+    cursor: pointer;
+    transition: transform .2s ease, filter .2s ease;
+}
+
+.btn:hover {
+    filter: brightness(1.05);
+    transform: scale(1.04)
+}
+
+/* Tamaños (escala visual) */
+#imagen-previa[data-tamano="S"] {
+    transform: scale(.55)
+}
+
+#imagen-previa[data-tamano="M"] {
+    transform: scale(.75)
+}
+
+#imagen-previa[data-tamano="L"] {
+    transform: scale(.95)
+}
+
+#imagen-previa[data-tamano="XL"] {
+    transform: scale(1)
+}
+
+/* Blanco y negro */
+#imagen-previa[data-modo="bn"] {
+    filter: grayscale(1) contrast(1.05)
+}
+
+/* Responsive */
+@media (max-width:1120px) {
+    .herramienta-impresion {
+        flex-wrap: wrap;
+        justify-content: center
+    }
+
+    .previa,
+    .panel-opciones {
+        flex: 1 1 560px;
+        max-width: 560px
+    }
+}
+
+@media (max-width:560px) {
+
+    .previa,
+    .panel-opciones {
+        flex-basis: 100%;
+        max-width: 100%
+    }
+
+    .titulo {
+        font-size: 3.2rem
+    }
+}
+
+/*asdasd*/

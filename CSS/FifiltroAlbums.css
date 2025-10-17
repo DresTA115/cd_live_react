@@ -1,0 +1,232 @@
+/* ===============================
+ 🎚️ SECCIÓN DE FILTROS DE ÁLBUMS
+=============================== */
+.filtros {
+  background: #000;
+  padding: 0;
+  border-bottom: 1px solid #222;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* ===== CONTENEDOR PRINCIPAL ===== */
+.contenedor-filtros {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+  position: relative;
+  z-index: 10;
+}
+
+/* ===============================
+ 🎛️ BOTONES DE FILTRO
+=============================== */
+.boton-filtro {
+  background: #222;
+  color: #f5f5f5;
+  border: 1px solid #333;
+  padding: 12px 25px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  min-width: 120px;
+  text-align: center;
+  outline: none;
+}
+
+.boton-filtro:hover,
+.boton-filtro.activo {
+  background: #A1182D;
+  border-color: #A1182D;
+  color: #fff;
+}
+
+/* ===============================
+ 🔽 MENÚ DESPLEGABLE (EDICIÓN)
+=============================== */
+.filtro-desplegable {
+  position: relative;
+  display: inline-block;
+}
+
+.boton-desplegable {
+  position: relative;
+  z-index: 2;
+}
+
+.boton-desplegable::after {
+  content: "▾";
+  margin-left: 6px;
+  font-size: 12px;
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+
+.boton-desplegable.activo::after {
+  transform: rotate(180deg);
+}
+
+/* ===== MENÚ INTERNO ===== */
+.menu-desplegable {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  background: #1b1b1b;
+  border: 1px solid #333;
+  border-radius: 6px;
+  list-style: none;
+  margin: 0;
+  padding: 5px 0;
+  min-width: 160px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  z-index: 9999; /* ✅ encima de todo */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.25s ease;
+}
+
+/* Al activarse */
+.menu-desplegable.mostrar {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Estilos internos */
+.menu-desplegable li {
+  width: 100%;
+}
+
+.menu-desplegable button {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  color: #f5f5f5;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.menu-desplegable button:hover {
+  background: #A1182D;
+  color: #fff;
+}
+/* ===============================
+ 💰 MENÚ DESPLEGABLE DE PRECIO
+=============================== */
+.boton-desplegable-precio {
+  position: relative;
+  z-index: 2;
+}
+
+.boton-desplegable-precio::after {
+  content: "▾";
+  margin-left: 6px;
+  font-size: 12px;
+  transition: transform 0.25s ease;
+}
+
+.boton-desplegable-precio.activo::after {
+  transform: rotate(180deg);
+}
+
+.menu-desplegable-precio {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  background: #1b1b1b;
+  border: 1px solid #333;
+  border-radius: 6px;
+  list-style: none;
+  margin: 0;
+  padding: 5px 0;
+  min-width: 160px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.25s ease;
+}
+
+.menu-desplegable-precio.mostrar {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.menu-desplegable-precio button {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  color: #f5f5f5;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.menu-desplegable-precio button:hover {
+  background: #A1182D;
+  color: #fff;
+}
+
+.boton-filtro.activo {
+  background: #A1182D;
+  border-color: #A1182D;
+  color: #fff;
+}
+
+/* ===============================
+ 📱 RESPONSIVE DESIGN
+=============================== */
+@media (max-width: 992px) {
+  .contenedor-filtros {
+    flex-wrap: wrap;
+    justify-content: center;
+    border: none;
+  }
+
+  .boton-filtro {
+    flex: 1 1 45%;
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .filtro-desplegable {
+    flex: 1 1 45%;
+  }
+
+  .menu-desplegable {
+    left: auto;
+    right: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .contenedor-filtros {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .boton-filtro {
+    min-width: 100px;
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+
+  .menu-desplegable {
+    min-width: 130px;
+  }
+}
+
+

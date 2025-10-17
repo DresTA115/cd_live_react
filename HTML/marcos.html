@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- Iconos y  Caligrafias   -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap">
+ 
+  <!-- Estilos -->
+  <link rel="stylesheet" href="/CSS/global.css">
+  <link rel="stylesheet" href="/CSS/index.css">
+  <link rel="stylesheet" href="/CSS/marcos.css">
+  
+</head>
+ <!-- Prueba de branchs en main David -->
+<body>
+  <header class="header">
+    <a  href="/index.html" class="logo">
+      <img src="/SRC/IMG/Logo/logo1.png" alt="">
+      <span class="brand-text">CD.Live</span>
+    </a >
+    <section class="Buscador">
+      <button type="submit" class="buscar">
+        <span class="material-symbols-outlined"> search</span>
+      </button>
+      <input placeholder="Buscar..." class="cajaBusqueda" />
+      <button type="button" class="explorar">
+        <span class="material-symbols-outlined">album</span>
+      </button>
+    </section>
+
+    <nav class="UsuarioCarrito">
+      <a class="Cuenta">
+        <span class="material-symbols-outlined">person</span>
+      </a>
+      <!-- Login oculto -->
+      <section class="LoginCuenta" id="LoginCuenta">
+        <div class="LoginContenedor">
+          <Button class="LoginClose" id="LoginClose">X</Button>
+          <div class="LoginIzquierda">
+            <video src="/SRC/video/308104_medium.mp4" autoplay muted loop></video>
+          </div>
+          <div class="LoginDerecha">
+            <form class="LoginForm" id="LoginForm">
+              <h3>INICIAR SESIÓN</h3>
+              <input type="text" placeholder="EMAIL" required>
+              <input type="password" placeholder="CLAVE" required>
+              <button type="submit">INGRESAR</button>
+
+              <p class="Continuar">O continúa con</p>
+              <div class="Social">
+                <i class="fa-brands fa-google"></i>
+                <i class="fa-brands fa-facebook"></i>
+                <i class="fa-brands fa-apple"></i>
+              </div>
+              <p class="Registro">¿YA TIENES UNA CUENTA?</p>
+              <button class="BotonRegistro" id="BotonRegistro">CREAR CUENTA</button>
+            </form>
+          </div>
+        </div>
+      </section>
+      <!-- Registro oculto -->
+      <section class="RegistroCuenta" id="RegistroCuenta">
+        <div class="RegistroContenedor">
+          <div class="RegistroBotones">
+            <button class="RegistroBack" id="RegistroBack"><i class="fa-solid fa-arrow-left"></i></button>
+            <button class="RegistroClose" id="RegistroClose">X</button>
+          </div>
+          <div class="RegistroIzquierda">
+            <video src="/SRC/video/308104_medium.mp4" autoplay muted loop></video>
+          </div>
+
+          <div class="RegistroDerecha">
+            <form class="RegistroForm" id="RegistroForm">
+              <h3>REGISTRO</h3>
+              <input type="text" placeholder="NOMBRE COMPLETO" required>
+              <input type="tel" placeholder="CELULAR" required>
+              <input type="email" placeholder="EMAIL" required>
+              <input type="email" placeholder="REPETIR EMAIL" required>
+              <input type="text" placeholder="PAÍS" required>
+              <input type="text" placeholder="CIUDAD" required>
+              <input type="password" placeholder="CLAVE" required>
+              <input type="password" placeholder="REPETIR CLAVE" required>
+
+              <button type="submit" class="RegistroBoton">CREAR CUENTA</button>
+            </form>
+          </div>
+        </div>
+      </section>
+      <!-- Registrop de Tarjeta -->
+      <section class="TarjetaCuenta" id="TarjetaCuenta">
+        <div class="TarjetaContenedor">
+          <button class="TarjetaClose" id="TarjetaClose">×</button>
+          <h3>Registrar Tarjeta</h3>
+
+          <form id="TarjetaForm">
+            <label>Número de tarjeta</label>
+            <input type="text" id="NumeroTarjeta" placeholder="1234 5678 9012 3456" maxlength="19" required>
+
+            <label>Nombre del titular</label>
+            <input type="text" id="TitularTarjeta" placeholder="Como aparece en la tarjeta" required>
+
+            <div class="TarjetaDatosExtra">
+              <div>
+                <label>Vencimiento</label>
+                <input type="text" id="FechaVencimiento" placeholder="MM/AA" maxlength="5" required>
+              </div>
+              <div>
+                <label>CVV</label>
+                <input type="text" id="CVV" placeholder="123" maxlength="3" required>
+              </div>
+            </div>
+
+            <button type="submit" class="TarjetaBoton">Guardar tarjeta</button>
+          </form>
+        </div>
+      </section>
+
+      <a class="carrito">
+        <span class="material-symbols-outlined">shopping_cart</span>
+      </a>
+     </nav>
+  </header>
+  <section class="titulo-area">
+        <h1 class="titulo">Impresiones</h1>
+        <p class="subtitulo">Personaliza tu foto y mira la vista previa</p>
+    </section>
+    <!-- Herramienta de impresión -->
+    <section class="herramienta-impresion">
+        <!-- Previa -->
+        <div class="previa">
+            <div class="lienzo">
+                <img id="imagen-previa" alt="" />
+                <p class="ayuda">Sube una imagen y ajusta las opciones</p>
+            </div>
+        </div>
+
+        <!-- Panel -->
+        <form class="panel-opciones" id="form-impresion" novalidate>
+            <h2 class="panel-titulo">Prepara tu impresión</h2>
+
+            <!-- Imagen -->
+            <div class="grupo">
+                <label for="archivo" class="etiqueta">Tu imagen</label>
+                <input type="file" id="archivo" accept="image/*" class="selector selector--archivo" />
+            </div>
+
+            <!-- Tamaño -->
+            <div class="grupo">
+                <label for="tamano" class="etiqueta">Tamaño</label>
+                <select id="tamano" class="selector">
+                    <option value="S">10 × 10 cm</option>
+                    <option value="M" selected>20 × 20 cm</option>
+                    <option value="L">30 × 30 cm</option>
+                    <option value="XL">40 × 40 cm</option>
+                </select>
+                <!-- Precio -->
+                <p class="precio">Precio: <strong id="precio">$0</strong></p>
+            </div>
+
+
+            <!-- Modo de color -->
+            <div class="grupo">
+                <label for="modo" class="etiqueta">Modo de color</label>
+                <select id="modo" class="selector">
+                    <option value="color" selected>Color</option>
+                    <option value="bn">Blanco y negro</option>
+                </select>
+            </div>
+
+            <!-- Borde -->
+            <div class="grupo">
+                <label class="etiqueta concheck">
+                    <input type="checkbox" id="borde" />
+                    <span>Agregar borde</span>
+                </label>
+
+                <div class="controles-borde" id="controles-borde" hidden>
+                    <div class="grupo">
+                        <label for="color-borde" class="etiqueta">Color del borde</label>
+                        <select id="color-borde" class="selector">
+                            <option value="blanco" selected>Blanco</option>
+                            <option value="negro">Negro</option>
+                            <option value="secundario">Azul (secundario)</option>
+                        </select>
+                    </div>
+
+                    <div class="grupo">
+                        <label for="estilo-borde" class="etiqueta">Estilo del borde</label>
+                        <select id="estilo-borde" class="selector">
+                            <option value="solid" selected>Sólido</option>
+                            <option value="double">Doble</option>
+                        </select>
+                    </div>
+
+                    <div class="grupo">
+                        <label for="grosor-borde" class="etiqueta">Grosor del borde</label>
+                        <select id="grosor-borde" class="selector">
+                            <option value="6px">Fino</option>
+                            <option value="10px" selected>Medio </option>
+                            <option value="16px">Grueso </option>
+                        </select>
+                    </div>
+
+                    <div class="grupo">
+                        <label for="esquinas-borde" class="etiqueta">Esquinas</label>
+                        <select id="esquinas-borde" class="selector">
+                            <option value="4px" selected>Rectas</option>
+                            <option value="12px">Redondeadas</option>
+                            <option value="22px">Muy redondas</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="acciones">
+                <button type="button" class="btn">Añadir al carrito</button>
+            </div>
+        </form>
+    </section>
+   <footer class="footer">
+    <div class="footer-links">
+      <a href="#">Acerca de nosotros</a>
+      <a href="#">Contacto</a>
+      <a href="#">Política de Privacidad</a>
+    </div>
+    <div class="footer-social">
+      <a href="https://facebook.com/tu_pagina" aria-label="Facebook" target="_blank" rel="noopener">
+        <i class="fa-brands fa-facebook-f"></i>
+      </a>
+      <a href="https://instagram.com/tu_pagina" aria-label="Instagram" target="_blank" rel="noopener">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+      <a href="https://x.com/tu_pagina" aria-label="X (Twitter)" target="_blank" rel="noopener">
+        <i class="fa-brands fa-x-twitter"></i>
+      </a>
+      <a href="https://wa.me/57XXXXXXXXXX" aria-label="WhatsApp" target="_blank" rel="noopener">
+        <i class="fa-brands fa-whatsapp"></i>
+      </a>
+    </div>
+  </footer>
+  <script src="/JS/artistas.js"></script>
+  <script src="/JS/Index.js"></script>
+  </body>
+
+</html>
