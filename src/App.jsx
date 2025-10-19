@@ -12,6 +12,7 @@ import { Inicio } from '@pages/Inicio'
 import { Albums } from '@pages/Albums'
 import { Instrumentos } from '@pages/Instrumentos'
 import { Marcos } from '@pages/Marcos'
+import { Buscador } from '@pages/Buscador/Buscador'
 
 export function App() {
   const [loginAbierto, setLoginAbierto] = useState(false)
@@ -50,6 +51,7 @@ export function App() {
           <Route path="/albums" element={<Albums />} />
           <Route path="/instrumentos" element={<Instrumentos />} />
           <Route path="/marcos" element={<Marcos />} />
+          <Route path="/buscar" element={<Buscador />} />
         </Routes>
       </MainLayout>
 

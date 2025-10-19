@@ -1,9 +1,39 @@
-import { Link, NavLink } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import './Header.css'
 
 const logoPrincipal = new URL('../../assets/images/logo/logo1.png', import.meta.url).href
 
 export function Header({ onOpenLogin }) {
+  const navigate = useNavigate()
+  const location = useLocation()
+  const [query, setQuery] = useState('')
+
+  useEffect(() => {
+    if (location.pathname !== '/buscar') {
+      return
+    }
+
+    const params = new URLSearchParams(location.search)
+    const value = params.get('q') ?? ''
+    setQuery(value)
+  }, [location.pathname, location.search])
+
+  function manejarSubmit(evento) {
+    evento.preventDefault()
+    const valor = query.trim()
+
+    if (!valor) {
+      return
+    }
+
+    navigate(`/buscar?q=${encodeURIComponent(valor)}`)
+  }
+
+  function manejarExplorar() {
+    navigate('/buscar')
+  }
+
   return (
     <header className="header">
       <Link to="/" className="logo">
@@ -26,15 +56,22 @@ export function Header({ onOpenLogin }) {
         </NavLink>
       </nav>
 
-      <section className="Buscador">
+      <form className="Buscador" onSubmit={manejarSubmit} role="search">
         <button type="submit" className="buscar" aria-label="Buscar">
           <span className="material-symbols-outlined">search</span>
         </button>
-        <input placeholder="Buscar..." className="cajaBusqueda" />
-        <button type="button" className="explorar" aria-label="Explorar">
+        <input
+          placeholder="Buscar..."
+          className="cajaBusqueda"
+          value={query}
+          onChange={(evento) => setQuery(evento.target.value)}
+          name="q"
+          autoComplete="off"
+        />
+        <button type="button" className="explorar" aria-label="Explorar" onClick={manejarExplorar}>
           <span className="material-symbols-outlined">album</span>
         </button>
-      </section>
+      </form>
 
       <nav className="UsuarioCarrito" aria-label="Acciones de usuario">
         <button type="button" className="Cuenta" onClick={onOpenLogin} aria-label="Abrir inicio de sesión">

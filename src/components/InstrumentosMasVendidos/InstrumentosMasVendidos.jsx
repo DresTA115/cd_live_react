@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { instrumentos } from '@data/instrumentos'
+import { BottonComprar } from '@components/common/BottonComprar/BottonComprar'
 
 import './InstrumentosMasVendidos.css'
 
@@ -39,9 +40,7 @@ export function InstrumentosMasVendidos() {
               <h3>{instrumento.nombre}</h3>
               <p>{instrumento.descripcion}</p>
               <span className="precio">{formatearPrecio(instrumento.precio)}</span>
-              <button type="button" className="btn-comprar">
-                Comprar
-              </button>
+              <BottonComprar />
             </div>
           </article>
         ))}

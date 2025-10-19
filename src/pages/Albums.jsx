@@ -6,6 +6,7 @@ import '@styles/filtroalbums.css'
 
 import { albums } from '@data/albums'
 import { obtenerAsset } from '@data/obtenerAsset'
+import { BottonComprar } from '@components/common/BottonComprar/BottonComprar'
 
 const categorias = [
   { id: 'Vinilo', nombre: 'Vinilos', imagen: obtenerAsset('img/logo/LogoVinilo.png') },
@@ -198,9 +199,7 @@ export function Albums() {
                   <strong>Formato:</strong> {album.formato}
                 </p>
                 <span className="precio">{formatearPrecio(album.precio)}</span>
-                <button type="button" className="btn-comprar">
-                  Comprar
-                </button>
+                <BottonComprar />
               </div>
             </article>
           ))}

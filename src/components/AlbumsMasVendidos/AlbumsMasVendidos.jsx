@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { albums } from '@data/albums'
+import { BottonComprar } from '@components/common/BottonComprar/BottonComprar'
 
 import './AlbumsMasVendidos.css'
 
@@ -44,9 +45,7 @@ export function AlbumsMasVendidos() {
                 <strong>Formato:</strong> {album.formato}
               </p>
               <span className="precio">{formatearPrecio(album.precio)}</span>
-              <button type="button" className="btn-comprar">
-                Comprar
-              </button>
+              <BottonComprar />
             </div>
           </article>
         ))}

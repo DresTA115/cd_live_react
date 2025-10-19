@@ -5,6 +5,7 @@ import '@styles/barraseleccion.css'
 
 import { instrumentos } from '@data/instrumentos'
 import { obtenerAsset } from '@data/obtenerAsset'
+import { BottonComprar } from '@components/common/BottonComprar/BottonComprar'
 
 const categorias = [
   { id: 'cuerda', nombre: 'Cuerda', imagen: obtenerAsset('img/instrumentos/LogoCuerda.png') },
@@ -73,9 +74,7 @@ export function Instrumentos() {
                 <h3>{instrumento.nombre}</h3>
                 <p>{instrumento.descripcion}</p>
                 <span className="precio">{formatearPrecio(instrumento.precio)}</span>
-                <button type="button" className="btn-comprar">
-                  Comprar
-                </button>
+                <BottonComprar />
               </div>
             </article>
           ))}
