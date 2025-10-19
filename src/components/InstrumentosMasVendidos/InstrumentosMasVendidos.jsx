@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
-import { albums } from '@datos/albums'
+import { instrumentos } from '@data/instrumentos'
+
+import './InstrumentosMasVendidos.css'
 
 function formatearPrecio(valor) {
   return new Intl.NumberFormat('es-CO', {
@@ -9,7 +11,7 @@ function formatearPrecio(valor) {
   }).format(valor)
 }
 
-export function AlbumsMasVendidos() {
+export function InstrumentosMasVendidos() {
   const [limite, setLimite] = useState(() => obtenerLimite())
 
   useEffect(() => {
@@ -22,26 +24,21 @@ export function AlbumsMasVendidos() {
   }, [])
 
   const lista = useMemo(
-    () => albums.filter((item) => item.masVendido).slice(0, limite),
+    () => instrumentos.filter((item) => item.masComprado).slice(0, limite),
     [limite],
   )
 
   return (
-    <section className="albumsMasVendidos">
-      <h2>Álbums más Vendidos</h2>
+    <section className="productosMasVendidos">
+      <h2>Instrumentos más Vendidos</h2>
       <div className="contenedor-vendidos">
-        {lista.map((album) => (
-          <article key={album.album} className="card">
-            <img src={album.imagen} alt={album.album} />
+        {lista.map((instrumento) => (
+          <article key={instrumento.nombre} className="card">
+            <img src={instrumento.imagen} alt={instrumento.nombre} />
             <div className="card-body">
-              <h3>{album.artista}</h3>
-              <p>
-                <strong>Álbum:</strong> {album.album}
-              </p>
-              <p>
-                <strong>Formato:</strong> {album.formato}
-              </p>
-              <span className="precio">{formatearPrecio(album.precio)}</span>
+              <h3>{instrumento.nombre}</h3>
+              <p>{instrumento.descripcion}</p>
+              <span className="precio">{formatearPrecio(instrumento.precio)}</span>
               <button type="button" className="btn-comprar">
                 Comprar
               </button>

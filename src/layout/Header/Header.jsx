@@ -1,8 +1,9 @@
-import { NavLink, Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
+import './Header.css'
 
-const logoPrincipal = new URL('../../assets/img/logo/logo1.png', import.meta.url).href
+const logoPrincipal = new URL('../../assets/images/logo/logo1.png', import.meta.url).href
 
-export function Header({ onAbrirLogin }) {
+export function Header({ onOpenLogin }) {
   return (
     <header className="header">
       <Link to="/" className="logo">
@@ -36,7 +37,7 @@ export function Header({ onAbrirLogin }) {
       </section>
 
       <nav className="UsuarioCarrito" aria-label="Acciones de usuario">
-  <button type="button" className="Cuenta" onClick={onAbrirLogin} aria-label="Abrir inicio de sesión">
+        <button type="button" className="Cuenta" onClick={onOpenLogin} aria-label="Abrir inicio de sesión">
           <span className="material-symbols-outlined">person</span>
         </button>
         <button type="button" className="carrito" aria-label="Ver carrito">

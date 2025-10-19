@@ -1,0 +1,119 @@
+.artistasDestacados {
+  background: #2a2a2a;
+  border-radius: 60px;
+  padding: 20px;
+  text-align: center;
+  margin: 40px auto 10px;
+  width: 95%;
+  max-width: 90%;
+  overflow: hidden;
+  position: relative;
+}
+
+.artistasDestacados h2 {
+  font-size: 30px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.carrucelArtista {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  position: relative;
+}
+
+.ventanaCarrusel {
+  overflow: hidden;
+  width: 100%;
+}
+
+.contenedorArtista {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.artista {
+  flex: 0 0 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  color: #fff;
+}
+
+.artista img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.artista img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+}
+
+.artista p {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.btnIsquierda,
+.btnDerecha {
+  background: transparent;
+  border: none;
+  color: #fff;
+  padding: 10px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+.btnIsquierda {
+  position: absolute;
+  left: 10px;
+}
+
+.btnDerecha {
+  position: absolute;
+  right: 10px;
+}
+
+@media (max-width: 1024px) {
+  .artista {
+    flex: 0 0 30%;
+  }
+}
+
+@media (max-width: 768px) {
+  .artista img {
+    width: 140px;
+    height: 140px;
+  }
+
+  .artista p {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .carrucelArtista {
+    gap: 8px;
+  }
+
+  .btnIsquierda,
+  .btnDerecha {
+    position: static;
+  }
+
+  .contenedorArtista {
+    gap: 12px;
+  }
+}

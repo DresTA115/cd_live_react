@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
-import { obtenerAsset } from '@datos/obtenerAsset'
+import { obtenerAsset } from '@data/obtenerAsset'
+
+import './ModalRegistro.css'
 
 const videoFondo = obtenerAsset('video/308104_medium.mp4')
 

@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
-import { artistasDestacados } from '@datos/artistasDestacados'
+import { artistasDestacados } from '@data/artistasDestacados'
+
+import './CarruselArtistas.css'
 
 export function CarruselArtistas() {
   const [indice, setIndice] = useState(0)

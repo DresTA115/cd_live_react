@@ -3,8 +3,15 @@ const recursosEstaticos = import.meta.glob('../assets/**/*.{png,jpg,jpeg,webp,sv
   import: 'default',
 })
 
+function normalizarRuta(ruta) {
+  if (ruta.startsWith('img/')) {
+    return `images/${ruta.slice(4)}`
+  }
+  return ruta
+}
+
 export function obtenerAsset(ruta, { optional = false } = {}) {
-  const clave = `../assets/${ruta}`
+  const clave = `../assets/${normalizarRuta(ruta)}`
   const recurso = recursosEstaticos[clave]
 
   if (!recurso) {

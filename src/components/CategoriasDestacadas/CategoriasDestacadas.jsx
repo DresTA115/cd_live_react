@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
-import { categoriasInicio } from '@datos/categoriasInicio'
+import { categoriasInicio } from '@data/categoriasInicio'
+
+import './CategoriasDestacadas.css'
 
 export function CategoriasDestacadas() {
   return (

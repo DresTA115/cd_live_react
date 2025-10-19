@@ -1,5 +1,5 @@
-import '@css/barraseleccion.css'
-import '@css/marcos.css'
+import '@styles/barraseleccion.css'
+import '@styles/marcos.css'
 
 export function Marcos() {
   return (
