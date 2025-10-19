@@ -2,7 +2,6 @@ import { useCallback, useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 import '@styles/global.css'
-import '@styles/header.css'
 
 import { MainLayout } from './layout/MainLayout/MainLayout'
 import { ModalLogin } from '@components/modals/ModalLogin'

@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { instrumentos } from '@data/instrumentos'
 import { BottonComprar } from '@components/common/BottonComprar/BottonComprar'
+import { ProductCard } from '@components/common/ProductCard/ProductCard'
 
 import './InstrumentosMasVendidos.css'
 
@@ -32,17 +33,18 @@ export function InstrumentosMasVendidos() {
   return (
     <section className="productosMasVendidos">
       <h2>Instrumentos más Vendidos</h2>
-      <div className="contenedor-vendidos">
+  <div className="contenedor-vendidos productGrid">
         {lista.map((instrumento) => (
-          <article key={instrumento.nombre} className="card">
-            <img src={instrumento.imagen} alt={instrumento.nombre} />
-            <div className="card-body">
-              <h3>{instrumento.nombre}</h3>
-              <p>{instrumento.descripcion}</p>
-              <span className="precio">{formatearPrecio(instrumento.precio)}</span>
-              <BottonComprar />
-            </div>
-          </article>
+          <ProductCard
+            key={instrumento.nombre}
+            imageSrc={instrumento.imagen}
+            imageAlt={instrumento.nombre}
+          >
+            <h3>{instrumento.nombre}</h3>
+            <p>{instrumento.descripcion}</p>
+            <span className="precio">{formatearPrecio(instrumento.precio)}</span>
+            <BottonComprar />
+          </ProductCard>
         ))}
       </div>
     </section>

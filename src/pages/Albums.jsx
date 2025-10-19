@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import '@styles/index.css'
-import '@styles/albums.css'
-import '@styles/barraseleccion.css'
-import '@styles/filtroalbums.css'
+
+import './Albums.css'
 
 import { albums } from '@data/albums'
 import { obtenerAsset } from '@data/obtenerAsset'
 import { BottonComprar } from '@components/common/BottonComprar/BottonComprar'
+import { FilterButton } from '@components/common/FilterButton/FilterButton'
+import { ProductCard } from '@components/common/ProductCard/ProductCard'
 
 const categorias = [
   { id: 'Vinilo', nombre: 'Vinilos', imagen: obtenerAsset('img/logo/LogoVinilo.png') },
@@ -118,13 +118,13 @@ export function Albums() {
       <section className="filtros">
         <div className="contenedor-filtros">
           <div className="filtro-desplegable" ref={refEdicion}>
-            <button
-              type="button"
-              className={`boton-filtro boton-desplegable${edicionSeleccionada ? ' activo' : ''}`}
+            <FilterButton
+              className="boton-desplegable"
+              isActive={Boolean(edicionSeleccionada)}
               onClick={() => setMenuEdicionVisible((visible) => !visible)}
             >
               Edición
-            </button>
+            </FilterButton>
             <ul className={`menu-desplegable${menuEdicionVisible ? ' mostrar' : ''}`}>
               <li>
                 <button type="button" onClick={() => seleccionarEdicion('Estandar')} data-edicion="Estandar">
@@ -140,13 +140,13 @@ export function Albums() {
           </div>
 
           <div className="filtro-desplegable" ref={refPrecio}>
-            <button
-              type="button"
-              className={`boton-filtro boton-desplegable-precio${ordenPrecio ? ' activo' : ''}`}
+            <FilterButton
+              className="boton-desplegable-precio"
+              isActive={Boolean(ordenPrecio)}
               onClick={() => setMenuPrecioVisible((visible) => !visible)}
             >
               Precio
-            </button>
+            </FilterButton>
             <ul className={`menu-desplegable-precio${menuPrecioVisible ? ' mostrar' : ''}`}>
               <li>
                 <button type="button" onClick={() => seleccionarPrecio('asc')} data-precio="asc">
@@ -161,23 +161,21 @@ export function Albums() {
             </ul>
           </div>
 
-          <button
-            type="button"
-            className={`boton-filtro${filtroEspecial === 'Promocion' ? ' activo' : ''}`}
+          <FilterButton
+            isActive={filtroEspecial === 'Promocion'}
             onClick={() => alternarFiltroEspecial('Promocion')}
             data-filtro="Promocion"
           >
             Promoción
-          </button>
+          </FilterButton>
 
-          <button
-            type="button"
-            className={`boton-filtro${filtroEspecial === 'Preventa' ? ' activo' : ''}`}
+          <FilterButton
+            isActive={filtroEspecial === 'Preventa'}
             onClick={() => alternarFiltroEspecial('Preventa')}
             data-filtro="Preventa"
           >
             Preventa
-          </button>
+          </FilterButton>
         </div>
       </section>
 
@@ -186,22 +184,23 @@ export function Albums() {
       </div>
 
       <section className="albums">
-        <div className="contenedor-vendidos">
+  <div className="contenedor-vendidos productGrid">
           {listaFiltrada.map((album) => (
-            <article key={`${album.artista}-${album.album}`} className="card">
-              <img src={album.imagen} alt={album.album} />
-              <div className="card-body">
-                <h3>{album.artista}</h3>
-                <p>
-                  <strong>Álbum:</strong> {album.album}
-                </p>
-                <p>
-                  <strong>Formato:</strong> {album.formato}
-                </p>
-                <span className="precio">{formatearPrecio(album.precio)}</span>
-                <BottonComprar />
-              </div>
-            </article>
+            <ProductCard
+              key={`${album.artista}-${album.album}`}
+              imageSrc={album.imagen}
+              imageAlt={album.album}
+            >
+              <h3>{album.artista}</h3>
+              <p>
+                <strong>Álbum:</strong> {album.album}
+              </p>
+              <p>
+                <strong>Formato:</strong> {album.formato}
+              </p>
+              <span className="precio">{formatearPrecio(album.precio)}</span>
+              <BottonComprar />
+            </ProductCard>
           ))}
         </div>
       </section>

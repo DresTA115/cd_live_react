@@ -1,6 +1,3 @@
-import '@styles/barraseleccion.css'
-import '@styles/marcos.css'
-
 export function Marcos() {
   return (
     <section className="paginaMarcos" style={{ padding: '60px 0', textAlign: 'center', color: '#f5f5f5' }}>
