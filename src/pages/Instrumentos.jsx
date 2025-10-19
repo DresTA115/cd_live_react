@@ -1,11 +1,11 @@
 import { useMemo, useState } from 'react'
-import '@styles/index.css'
-import '@styles/instrumentos.css'
-import '@styles/barraseleccion.css'
+
+import './Instrumentos.css'
 
 import { instrumentos } from '@data/instrumentos'
 import { obtenerAsset } from '@data/obtenerAsset'
 import { BottonComprar } from '@components/common/BottonComprar/BottonComprar'
+import { ProductCard } from '@components/common/ProductCard/ProductCard'
 
 const categorias = [
   { id: 'cuerda', nombre: 'Cuerda', imagen: obtenerAsset('img/instrumentos/LogoCuerda.png') },
@@ -66,17 +66,18 @@ export function Instrumentos() {
       </div>
 
       <section className="Instrumentos">
-        <div className="contenedor-vendidos">
+  <div className="contenedor-vendidos productGrid">
           {listaFiltrada.map((instrumento) => (
-            <article key={`${instrumento.nombre}-${instrumento.descripcion}`} className="card">
-              <img src={instrumento.imagen} alt={instrumento.nombre} />
-              <div className="card-body">
-                <h3>{instrumento.nombre}</h3>
-                <p>{instrumento.descripcion}</p>
-                <span className="precio">{formatearPrecio(instrumento.precio)}</span>
-                <BottonComprar />
-              </div>
-            </article>
+            <ProductCard
+              key={`${instrumento.nombre}-${instrumento.descripcion}`}
+              imageSrc={instrumento.imagen}
+              imageAlt={instrumento.nombre}
+            >
+              <h3>{instrumento.nombre}</h3>
+              <p>{instrumento.descripcion}</p>
+              <span className="precio">{formatearPrecio(instrumento.precio)}</span>
+              <BottonComprar />
+            </ProductCard>
           ))}
         </div>
       </section>

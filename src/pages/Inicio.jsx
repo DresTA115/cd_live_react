@@ -1,7 +1,3 @@
-import '@styles/index.css'
-import '@styles/albummasvendidos.css'
-import '@styles/instrumentosmasvendidos.css'
-
 import { VideoDestacado } from '@components/VideoDestacado/VideoDestacado'
 import { CategoriasDestacadas } from '@components/CategoriasDestacadas/CategoriasDestacadas'
 import { InstrumentosMasVendidos } from '@components/InstrumentosMasVendidos/InstrumentosMasVendidos'

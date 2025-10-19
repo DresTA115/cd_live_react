@@ -6,6 +6,7 @@ import '@css/filtroalbums.css'
 
 import { albums } from '@datos/albums'
 import { obtenerAsset } from '@datos/obtenerAsset'
+import { FilterButton } from '@components/common/FilterButton/FilterButton'
 
 const categorias = [
   { id: 'Vinilo', nombre: 'Vinilos', imagen: obtenerAsset('img/logo/LogoVinilo.png') },
@@ -117,13 +118,13 @@ export function Albums() {
       <section className="filtros">
         <div className="contenedor-filtros">
           <div className="filtro-desplegable" ref={refEdicion}>
-            <button
-              type="button"
-              className={`boton-filtro boton-desplegable${edicionSeleccionada ? ' activo' : ''}`}
+            <FilterButton
+              className="boton-desplegable"
+              isActive={Boolean(edicionSeleccionada)}
               onClick={() => setMenuEdicionVisible((visible) => !visible)}
             >
               Edición
-            </button>
+            </FilterButton>
             <ul className={`menu-desplegable${menuEdicionVisible ? ' mostrar' : ''}`}>
               <li>
                 <button type="button" onClick={() => seleccionarEdicion('Estandar')} data-edicion="Estandar">
@@ -139,13 +140,13 @@ export function Albums() {
           </div>
 
           <div className="filtro-desplegable" ref={refPrecio}>
-            <button
-              type="button"
-              className={`boton-filtro boton-desplegable-precio${ordenPrecio ? ' activo' : ''}`}
+            <FilterButton
+              className="boton-desplegable-precio"
+              isActive={Boolean(ordenPrecio)}
               onClick={() => setMenuPrecioVisible((visible) => !visible)}
             >
               Precio
-            </button>
+            </FilterButton>
             <ul className={`menu-desplegable-precio${menuPrecioVisible ? ' mostrar' : ''}`}>
               <li>
                 <button type="button" onClick={() => seleccionarPrecio('asc')} data-precio="asc">
@@ -160,23 +161,21 @@ export function Albums() {
             </ul>
           </div>
 
-          <button
-            type="button"
-            className={`boton-filtro${filtroEspecial === 'Promocion' ? ' activo' : ''}`}
+          <FilterButton
+            isActive={filtroEspecial === 'Promocion'}
             onClick={() => alternarFiltroEspecial('Promocion')}
             data-filtro="Promocion"
           >
             Promoción
-          </button>
+          </FilterButton>
 
-          <button
-            type="button"
-            className={`boton-filtro${filtroEspecial === 'Preventa' ? ' activo' : ''}`}
+          <FilterButton
+            isActive={filtroEspecial === 'Preventa'}
             onClick={() => alternarFiltroEspecial('Preventa')}
             data-filtro="Preventa"
           >
             Preventa
-          </button>
+          </FilterButton>
         </div>
       </section>
 
