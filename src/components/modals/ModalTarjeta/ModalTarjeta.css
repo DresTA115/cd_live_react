@@ -1,0 +1,113 @@
+.TarjetaCuenta {
+  position: fixed;
+  inset: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 4000;
+}
+
+.TarjetaCuenta.Active {
+  display: flex;
+}
+
+.TarjetaContenedor {
+  background: #111;
+  color: #fff;
+  width: 420px;
+  border-radius: 20px;
+  padding: 25px 30px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+  position: relative;
+  text-align: left;
+  animation: FadeIn 0.3s ease-out;
+}
+
+.TarjetaClose {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 26px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.TarjetaClose:hover {
+  transform: scale(1.2);
+  color: #a1182d;
+}
+
+.TarjetaContenedor h3 {
+  text-align: center;
+  margin-bottom: 15px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.TarjetaContenedor form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.TarjetaContenedor label {
+  font-size: 14px;
+  color: #ddd;
+  margin-bottom: 4px;
+}
+
+.TarjetaContenedor input {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  background: #fff;
+  color: #000;
+  font-size: 14px;
+}
+
+.TarjetaDatosExtra {
+  display: flex;
+  gap: 10px;
+}
+
+.TarjetaDatosExtra div {
+  flex: 1;
+}
+
+.TarjetaBoton {
+  margin-top: 10px;
+  background: #c62828;
+  border: none;
+  border-radius: 20px;
+  padding: 10px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  width: 100%;
+}
+
+.TarjetaBoton:hover {
+  background: #a61e1e;
+  transform: scale(1.03);
+}
+
+@keyframes FadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

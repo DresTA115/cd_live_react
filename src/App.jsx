@@ -1,18 +1,18 @@
 import { useCallback, useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-import '@css/global.css'
-import '@css/header.css'
+import '@styles/global.css'
+import '@styles/header.css'
 
-import { Header } from '@componentes/layout/Header'
-import { Footer } from '@componentes/layout/Footer'
-import { ModalLogin } from '@componentes/modales/ModalLogin'
-import { ModalRegistro } from '@componentes/modales/ModalRegistro'
-import { ModalTarjeta } from '@componentes/modales/ModalTarjeta'
-import { Inicio } from '@paginas/Inicio'
-import { Albums } from '@paginas/Albums'
-import { Instrumentos } from '@paginas/Instrumentos'
-import { Marcos } from '@paginas/Marcos'
+import { MainLayout } from './layout/MainLayout/MainLayout'
+import { ModalLogin } from '@components/modals/ModalLogin'
+import { ModalRegistro } from '@components/modals/ModalRegistro'
+import { ModalTarjeta } from '@components/modals/ModalTarjeta'
+import { Inicio } from '@pages/Inicio'
+import { Albums } from '@pages/Albums'
+import { Instrumentos } from '@pages/Instrumentos'
+import { Marcos } from '@pages/Marcos'
+import { Buscador } from '@pages/Buscador/Buscador'
 
 export function App() {
   const [loginAbierto, setLoginAbierto] = useState(false)
@@ -45,18 +45,15 @@ export function App() {
 
   return (
     <BrowserRouter>
-      <div className="aplicacion">
-  <Header onAbrirLogin={abrirLogin} />
-        <main className="contenidoPrincipal">
-          <Routes>
-            <Route path="/" element={<Inicio />} />
-            <Route path="/albums" element={<Albums />} />
-            <Route path="/instrumentos" element={<Instrumentos />} />
-            <Route path="/marcos" element={<Marcos />} />
-          </Routes>
-        </main>
-  <Footer />
-      </div>
+      <MainLayout onOpenLogin={abrirLogin}>
+        <Routes>
+          <Route path="/" element={<Inicio />} />
+          <Route path="/albums" element={<Albums />} />
+          <Route path="/instrumentos" element={<Instrumentos />} />
+          <Route path="/marcos" element={<Marcos />} />
+          <Route path="/buscar" element={<Buscador />} />
+        </Routes>
+      </MainLayout>
 
       <ModalLogin abierto={loginAbierto} onCerrar={cerrarModales} onIrRegistro={abrirRegistro} />
       <ModalRegistro
