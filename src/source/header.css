@@ -1,3 +1,15 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  background: #000000;
+  color: #f5f5f5;
+}
+
 /* ===========================
  🎧 HEADER PRINCIPAL
 =========================== */
@@ -18,9 +30,10 @@
 }
 
 /* ===== LINKS GENERALES ===== */
+
 .header a {
   text-decoration: none;
-  color: white;
+  color: #f5f5f5;
   transition: color 0.3s ease;
 }
 
@@ -47,12 +60,38 @@
 
 .logo img:hover {
   transform: scale(1.1);
-  content: url("/SRC/IMG/Logo/logo64.png");
+  content: url("../assets/img/logo/logo64.png");
 }
 
 .logo span {
   font-size: 40px;
   font-weight: 600;
+}
+
+/* ===== MENÚ PRINCIPAL ===== */
+.menuPrincipal {
+  margin-left: 40px;  
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.menuPrincipal .enlaceMenu {
+  color: #f5f5f5;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.menuPrincipal .enlaceMenu:hover,
+.menuPrincipal .enlaceMenu.active {
+  color: #A1182D;
+  border-color: #A1182D;
 }
 
 /* ===== BUSCADOR ===== */
@@ -63,7 +102,6 @@
   display: flex;
   align-items: center;
   background: #2a2a2a;
-  border: 3px solid #000;
   border-radius: 100px;
   padding: 0 12px;
   margin: 0 auto;
@@ -109,18 +147,19 @@
   width: 50px;
   height: 50px;
   display: grid;
+  background-color: transparent;
+  border: none;
   place-items: center;
   color: #fff;
+  cursor: pointer;
   text-decoration: none;
-  border-radius: 50%;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, .35) inset;
   user-select: none;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .UsuarioCarrito .Cuenta:hover,
 .UsuarioCarrito .carrito:hover {
- color: #A1182D;
+  color: #A1182D;
 }
 
 .UsuarioCarrito .material-symbols-outlined {
@@ -157,6 +196,12 @@
   .logo span {
     font-size: 32px;
   }
+
+  .menuPrincipal {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
 }
 
 /* Celulares (≤ 768px) */
@@ -169,6 +214,13 @@
 
   .logo {
     justify-content: center;
+  }
+
+  .menuPrincipal {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    gap: 10px;
   }
 
   .Buscador {
@@ -222,6 +274,7 @@
     font-size: 14px;
   }
 }
+
 /* Login Oculto*/
 
 .LoginCuenta {
@@ -264,7 +317,7 @@
 
   .LoginClose:hover {
     transform: scale(1.2);
-    color: #A1182D ;
+    color: #A1182D;
   }
 
   .LoginIzquierda {
@@ -474,7 +527,7 @@
   }
 
   .RegistroBoton {
-    background:  #c62828;
+    background: #c62828;
     border: none;
     border-radius: 20px;
     padding: 10px;
@@ -508,97 +561,98 @@
   z-index: 4000;
 
   .TarjetaContenedor {
-  background: #111;
-  color: #fff;
-  width: 420px;
-  border-radius: 20px;
-  padding: 25px 30px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
-  position: relative;
-  text-align: left;
-  animation: FadeIn 0.3s ease-out;
-}
+    background: #111;
+    color: #fff;
+    width: 420px;
+    border-radius: 20px;
+    padding: 25px 30px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+    position: relative;
+    text-align: left;
+    animation: FadeIn 0.3s ease-out;
+  }
 
-/* ---------- Botón de cierre ---------- */
-.TarjetaClose {
-  position: absolute;
-  top: 12px;
-  right: 14px;
-  background: transparent;
-  border: none;
-  color: #fff;
-  font-size: 26px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.2s;
+  /* ---------- Botón de cierre ---------- */
+  .TarjetaClose {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 26px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
 
-:hover {
-  transform: scale(1.2);
-  color: #A1182D;
-}
+    :hover {
+      transform: scale(1.2);
+      color: #A1182D;
+    }
 
-}
+  }
 
-/* ---------- Encabezado ---------- */
-.TarjetaContenedor h3 {
-  text-align: center;
-  margin-bottom: 15px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-}
+  /* ---------- Encabezado ---------- */
+  .TarjetaContenedor h3 {
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
 
-/* ---------- Formulario ---------- */
-.TarjetaContenedor form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
+  /* ---------- Formulario ---------- */
+  .TarjetaContenedor form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
 
-.TarjetaContenedor label {
-  font-size: 14px;
-  color: #ddd;
-  margin-bottom: 4px;
-}
+  .TarjetaContenedor label {
+    font-size: 14px;
+    color: #ddd;
+    margin-bottom: 4px;
+  }
 
-.TarjetaContenedor input {
-  width: 100%;
-  margin-bottom: 12px;
-  padding: 10px;
-  border-radius: 6px;
-  border: none;
-  background: #fff;
-  color: #000;
-  font-size: 14px;
-}
+  .TarjetaContenedor input {
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    background: #fff;
+    color: #000;
+    font-size: 14px;
+  }
 
-/* ---------- Campos extra (MM/AA y CVV) ---------- */
-.TarjetaDatosExtra {
-  display: flex;
-  gap: 10px;
+  /* ---------- Campos extra (MM/AA y CVV) ---------- */
+  .TarjetaDatosExtra {
+    display: flex;
+    gap: 10px;
 
-  div {
-  flex: 1;
-}
-}
-/* ---------- Botón Guardar ---------- */
-.TarjetaBoton {
-  margin-top: 10px;
-  background: #c62828;
-  border: none;
-  border-radius: 20px;
-  padding: 10px;
-  color: #fff;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
-  width: 100%;
-}
+    div {
+      flex: 1;
+    }
+  }
+
+  /* ---------- Botón Guardar ---------- */
+  .TarjetaBoton {
+    margin-top: 10px;
+    background: #c62828;
+    border: none;
+    border-radius: 20px;
+    padding: 10px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    width: 100%;
+  }
 
 
-.TarjetaBoton:hover {
-  background: #a61e1e;
-  transform: scale(1.03);
-}
+  .TarjetaBoton:hover {
+    background: #a61e1e;
+    transform: scale(1.03);
+  }
 }
 
 .TarjetaCuenta.Active {
