@@ -33,7 +33,7 @@ export function AlbumsMasVendidos() {
   return (
     <section className="albumsMasVendidos">
       <h2>Álbums más Vendidos</h2>
-  <div className="contenedor-vendidos productGrid">
+  <div className="productGrid">
         {lista.map((album) => (
           <ProductCard
             key={album.album}

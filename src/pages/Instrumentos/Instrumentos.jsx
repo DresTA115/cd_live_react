@@ -66,7 +66,7 @@ export function Instrumentos() {
       </div>
 
       <section className="Instrumentos">
-  <div className="contenedor-vendidos productGrid">
+        <div className="productGrid">
           {listaFiltrada.map((instrumento) => (
             <ProductCard
               key={`${instrumento.nombre}-${instrumento.descripcion}`}

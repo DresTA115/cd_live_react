@@ -33,7 +33,7 @@ export function InstrumentosMasVendidos() {
   return (
     <section className="productosMasVendidos">
       <h2>Instrumentos más Vendidos</h2>
-  <div className="contenedor-vendidos productGrid">
+  <div className="productGrid">
         {lista.map((instrumento) => (
           <ProductCard
             key={instrumento.nombre}

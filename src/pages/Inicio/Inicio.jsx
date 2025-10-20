@@ -1,3 +1,5 @@
+import './Inicio.css'
+
 import { VideoDestacado } from '@components/VideoDestacado/VideoDestacado'
 import { CategoriasDestacadas } from '@components/CategoriasDestacadas/CategoriasDestacadas'
 import { InstrumentosMasVendidos } from '@components/InstrumentosMasVendidos/InstrumentosMasVendidos'

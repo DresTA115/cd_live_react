@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import '@css/index.css'
-import '@css/albums.css'
-import '@css/barraseleccion.css'
-import '@css/filtroalbums.css'
 
-import { albums } from '@datos/albums'
-import { obtenerAsset } from '@datos/obtenerAsset'
-import { FilterButton } from '@components/common/FilterButton/FilterButton'
+import './Albums.css'
+
+import { albums } from '@data/albums'
+import { obtenerAsset } from '@data/obtenerAsset'
+import { BottonComprar } from '@components/common/BottonComprar/BottonComprar'
+import { ProductCard } from '@components/common/ProductCard/ProductCard'
+import { AlbumsFilters } from '@components/AlbumsFilters/AlbumsFilters'
 
 const categorias = [
   { id: 'Vinilo', nombre: 'Vinilos', imagen: obtenerAsset('img/logo/LogoVinilo.png') },
@@ -115,93 +115,43 @@ export function Albums() {
         </div>
       </section>
 
-      <section className="filtros">
-        <div className="contenedor-filtros">
-          <div className="filtro-desplegable" ref={refEdicion}>
-            <FilterButton
-              className="boton-desplegable"
-              isActive={Boolean(edicionSeleccionada)}
-              onClick={() => setMenuEdicionVisible((visible) => !visible)}
-            >
-              Edición
-            </FilterButton>
-            <ul className={`menu-desplegable${menuEdicionVisible ? ' mostrar' : ''}`}>
-              <li>
-                <button type="button" onClick={() => seleccionarEdicion('Estandar')} data-edicion="Estandar">
-                  Estándar
-                </button>
-              </li>
-              <li>
-                <button type="button" onClick={() => seleccionarEdicion('Limitada')} data-edicion="Limitada">
-                  Limitada
-                </button>
-              </li>
-            </ul>
-          </div>
-
-          <div className="filtro-desplegable" ref={refPrecio}>
-            <FilterButton
-              className="boton-desplegable-precio"
-              isActive={Boolean(ordenPrecio)}
-              onClick={() => setMenuPrecioVisible((visible) => !visible)}
-            >
-              Precio
-            </FilterButton>
-            <ul className={`menu-desplegable-precio${menuPrecioVisible ? ' mostrar' : ''}`}>
-              <li>
-                <button type="button" onClick={() => seleccionarPrecio('asc')} data-precio="asc">
-                  Menor a Mayor
-                </button>
-              </li>
-              <li>
-                <button type="button" onClick={() => seleccionarPrecio('desc')} data-precio="desc">
-                  Mayor a Menor
-                </button>
-              </li>
-            </ul>
-          </div>
-
-          <FilterButton
-            isActive={filtroEspecial === 'Promocion'}
-            onClick={() => alternarFiltroEspecial('Promocion')}
-            data-filtro="Promocion"
-          >
-            Promoción
-          </FilterButton>
-
-          <FilterButton
-            isActive={filtroEspecial === 'Preventa'}
-            onClick={() => alternarFiltroEspecial('Preventa')}
-            data-filtro="Preventa"
-          >
-            Preventa
-          </FilterButton>
-        </div>
-      </section>
+      <AlbumsFilters
+        refEdicion={refEdicion}
+        refPrecio={refPrecio}
+        edicionSeleccionada={edicionSeleccionada}
+        ordenPrecio={ordenPrecio}
+        filtroEspecial={filtroEspecial}
+        menuEdicionVisible={menuEdicionVisible}
+        menuPrecioVisible={menuPrecioVisible}
+        onToggleEdicionMenu={() => setMenuEdicionVisible((visible) => !visible)}
+        onTogglePrecioMenu={() => setMenuPrecioVisible((visible) => !visible)}
+        onSeleccionarEdicion={seleccionarEdicion}
+        onSeleccionarPrecio={seleccionarPrecio}
+        onAlternarFiltroEspecial={alternarFiltroEspecial}
+      />
 
       <div className="titulo">
         <h2>Álbums</h2>
       </div>
 
       <section className="albums">
-        <div className="contenedor-vendidos">
+        <div className="productGrid">
           {listaFiltrada.map((album) => (
-            <article key={`${album.artista}-${album.album}`} className="card">
-              <img src={album.imagen} alt={album.album} />
-              <div className="card-body">
-                <h3>{album.artista}</h3>
-                <p>
-                  <strong>Álbum:</strong> {album.album}
-                </p>
-                <p>
-                  <strong>Formato:</strong> {album.formato}
-                </p>
-                <span className="precio">{formatearPrecio(album.precio)}</span>
-                <button type="button" className="btn-comprar">
-                  Comprar
-                </button>
-              </div>
-            </article>
+            <ProductCard
+              key={`${album.artista}-${album.album}`}
+              imageSrc={album.imagen}
+              imageAlt={album.album}
+            >
+              <h3>{album.artista}</h3>
+              <p>
+                <strong>Álbum:</strong> {album.album}
+              </p>
+              <p>
+                <strong>Formato:</strong> {album.formato}
+              </p>
+              <span className="precio">{formatearPrecio(album.precio)}</span>
+              <BottonComprar />
+            </ProductCard>
           ))}
         </div>
       </section>

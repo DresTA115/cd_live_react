@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { albums } from '@data/albums'
 import { instrumentos } from '@data/instrumentos'
 import { BottonComprar } from '@components/common/BottonComprar/BottonComprar'
+import { ProductCard } from '@components/common/ProductCard/ProductCard'
 
 import './Buscador.css'
 
@@ -111,29 +112,28 @@ export function Buscador() {
       </header>
 
       {hayResultados ? (
-        <div className="searchResults">
+        <div className="searchResults productGrid">
           {elementos.map((item) => (
-            <article key={item.id} className="searchCard">
-              <div className="searchImage">
-                <img src={item.imagen} alt={item.titulo} loading="lazy" />
+            <ProductCard
+              key={item.id}
+              imageSrc={item.imagen}
+              imageAlt={item.titulo}
+              className="searchCard"
+              bodyClassName="searchBody"
+            >
+              <span className="searchTag">{item.tipo}</span>
+              <h3>{item.titulo}</h3>
+              {item.descripcion && <p className="searchDescription">{item.descripcion}</p>}
+              <div className="searchMeta">
+                {item.detalle && <span className="searchDetail">{item.detalle}</span>}
+                {typeof item.precio === 'number' && (
+                  <span className="searchPrice">{precioFormato.format(item.precio)}</span>
+                )}
               </div>
-              <div className="searchInfo">
-                <span className="searchTag">{item.tipo}</span>
-                <h2>{item.titulo}</h2>
-                {item.descripcion && <p className="searchDescription">{item.descripcion}</p>}
-                <div className="searchMeta">
-                  {item.detalle && <span className="searchDetail">{item.detalle}</span>}
-                  {typeof item.precio === 'number' && <span className="searchPrice">{precioFormato.format(item.precio)}</span>}
-                </div>
-                <BottonComprar
-                  type="button"
-                  className="searchButton"
-                  onClick={() => navigate(item.enlace)}
-                >
-                  Comprar
-                </BottonComprar>
-              </div>
-            </article>
+              <BottonComprar className="searchButton" onClick={() => navigate(item.enlace)}>
+                Comprar
+              </BottonComprar>
+            </ProductCard>
           ))}
         </div>
       ) : (
