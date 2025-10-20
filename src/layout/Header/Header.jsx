@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
-import './Header.css'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 
-const logoPrincipal = new URL('../../assets/images/logo/logo1.png', import.meta.url).href
+import { Logo } from '@components/common/Logo/Logo'
+import './Header.css'
 
 export function Header({ onOpenLogin }) {
   const navigate = useNavigate()
@@ -14,8 +14,8 @@ export function Header({ onOpenLogin }) {
       return
     }
 
-    const params = new URLSearchParams(location.search)
-    const value = params.get('q') ?? ''
+  const params = new URLSearchParams(location.search)
+  const value = params.get('termino') ?? ''
     setQuery(value)
   }, [location.pathname, location.search])
 
@@ -27,7 +27,7 @@ export function Header({ onOpenLogin }) {
       return
     }
 
-    navigate(`/buscar?q=${encodeURIComponent(valor)}`)
+  navigate(`/buscar?termino=${encodeURIComponent(valor)}`)
   }
 
   function manejarExplorar() {
@@ -36,10 +36,7 @@ export function Header({ onOpenLogin }) {
 
   return (
     <header className="header">
-      <Link to="/" className="logo">
-        <img src={logoPrincipal} alt="CD.Live" />
-        <span className="brand-text">CD.Live</span>
-      </Link>
+      <Logo />
 
       <nav className="menuPrincipal" aria-label="Navegación principal">
         <NavLink to="/" end className={({ isActive }) => (isActive ? 'enlaceMenu active' : 'enlaceMenu')}>
@@ -65,7 +62,7 @@ export function Header({ onOpenLogin }) {
           className="cajaBusqueda"
           value={query}
           onChange={(evento) => setQuery(evento.target.value)}
-          name="q"
+          name="termino"
           autoComplete="off"
         />
         <button type="button" className="explorar" aria-label="Explorar" onClick={manejarExplorar}>

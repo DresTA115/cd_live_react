@@ -1,4 +1,4 @@
-.searchPage {
+.paginaBusqueda {
   width: min(1200px, 100% - 3rem);
   margin: 0 auto;
   padding: 60px 0 80px;
@@ -8,41 +8,41 @@
   color: #f5f5f5;
 }
 
-.searchHeader {
+.encabezadoBusqueda {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.searchHeader h1 {
+.encabezadoBusqueda h1 {
   font-size: clamp(1.8rem, 2.5vw, 2.4rem);
   margin-bottom: 12px;
 }
 
-.searchHeader p {
+.encabezadoBusqueda p {
   color: #c0c0c0;
   max-width: 680px;
 }
 
-.searchResults {
+.resultadosBusqueda {
   width: 100%;
 }
 
-.searchCard {
+.tarjetaBusqueda {
   --product-card-image-height: 220px;
 }
 
-.searchBody {
+.cuerpoTarjeta {
   align-items: center;
   text-align: center;
   gap: 12px;
 }
 
-.searchBody h3 {
+.cuerpoTarjeta h3 {
   font-size: 1.05rem;
 }
 
-.searchTag {
+.etiquetaTipo {
   display: inline-flex;
   align-self: center;
   padding: 4px 12px;
@@ -54,11 +54,11 @@
   color: #a1182d;
 }
 
-.searchDescription {
+.descripcionResultado {
   color: #444;
 }
 
-.searchMeta {
+.detallesResultado {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
@@ -68,23 +68,19 @@
   color: #555;
 }
 
-.searchDetail {
-  background: rgba(0, 0, 0, 0.06);
-  padding: 4px 10px;
-  border-radius: 999px;
-}
 
-.searchPrice {
+
+.precioResultado {
   font-weight: 600;
   color: #111;
 }
 
-.searchButton {
+.botonBusqueda {
   margin-top: auto;
   align-self: center;
 }
 
-.searchEmpty {
+.mensajeVacio {
   display: flex;
   flex-direction: column;
   gap: 18px;
@@ -98,18 +94,18 @@
   text-align: center;
 }
 
-.searchEmpty .material-symbols-outlined {
+.mensajeVacio .material-symbols-outlined {
   font-size: 48px;
   color: #ff5a76;
 }
 
 @media (max-width: 640px) {
-  .searchPage {
+  .paginaBusqueda {
     width: min(100% - 2rem, 560px);
     padding-top: 40px;
   }
 
-  .searchButton {
+  .botonBusqueda {
     width: 100%;
     text-align: center;
   }
