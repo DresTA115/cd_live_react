@@ -1,0 +1,46 @@
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 30px;
+  text-decoration: none;
+  color: #fff;
+}
+
+.logo img {
+  width: 70px;
+  height: 70px;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+  transform: scale(1.1);
+}
+
+.logo .brand-text {
+  font-size: 40px;
+  font-weight: 600;
+}
+
+@media (max-width: 992px) {
+  .logo img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .logo .brand-text {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .logo .brand-text {
+    font-size: 26px;
+  }
+}

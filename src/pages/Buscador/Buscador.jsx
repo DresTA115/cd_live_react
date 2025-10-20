@@ -51,7 +51,7 @@ export function Buscador() {
   const location = useLocation()
   const navigate = useNavigate()
   const parametros = useMemo(() => new URLSearchParams(location.search), [location.search])
-  const termino = parametros.get('q')?.trim() ?? ''
+  const termino = parametros.get('termino')?.trim() ?? ''
 
   const resultados = useMemo(() => {
     if (!termino) {
@@ -99,8 +99,8 @@ export function Buscador() {
   const hayResultados = elementos.length > 0
 
   return (
-    <section className="searchPage">
-      <header className="searchHeader">
+    <section className="paginaBusqueda">
+      <header className="encabezadoBusqueda">
         <h1>{termino ? `Resultados para "${termino}"` : 'Explora nuestro catálogo'}</h1>
         <p>
           {termino
@@ -112,32 +112,26 @@ export function Buscador() {
       </header>
 
       {hayResultados ? (
-        <div className="searchResults productGrid">
+        <div className="resultadosBusqueda productGrid">
           {elementos.map((item) => (
             <ProductCard
               key={item.id}
               imageSrc={item.imagen}
               imageAlt={item.titulo}
-              className="searchCard"
-              bodyClassName="searchBody"
+              className="tarjetaBusqueda"
+              bodyClassName="cuerpoTarjeta"
             >
-              <span className="searchTag">{item.tipo}</span>
               <h3>{item.titulo}</h3>
-              {item.descripcion && <p className="searchDescription">{item.descripcion}</p>}
-              <div className="searchMeta">
-                {item.detalle && <span className="searchDetail">{item.detalle}</span>}
-                {typeof item.precio === 'number' && (
-                  <span className="searchPrice">{precioFormato.format(item.precio)}</span>
-                )}
-              </div>
-              <BottonComprar className="searchButton" onClick={() => navigate(item.enlace)}>
+              {item.descripcion && <p className="descripcionResultado">{item.descripcion}</p>}
+                  <span className="precioResultado">{precioFormato.format(item.precio)}</span>
+              <BottonComprar className="botonBusqueda" onClick={() => navigate(item.enlace)}>
                 Comprar
               </BottonComprar>
             </ProductCard>
           ))}
         </div>
       ) : (
-        <div className="searchEmpty">
+        <div className="mensajeVacio">
           <span className="material-symbols-outlined" aria-hidden="true">
             search
           </span>
