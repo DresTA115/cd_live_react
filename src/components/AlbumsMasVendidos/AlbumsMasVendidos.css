@@ -26,7 +26,7 @@
   border-radius: 2px;
 }
 
-.albumsMasVendidos .contenedor-vendidos {
+.albumsMasVendidos .productGrid {
   width: min(1300px, 94%);
   margin: 0 auto;
   padding: 0 10px;

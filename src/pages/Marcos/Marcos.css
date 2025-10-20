@@ -1,0 +1,11 @@
+.paginaMarcos {
+  padding: 60px 0;
+  text-align: center;
+  color: #f5f5f5;
+}
+
+.paginaMarcos p {
+  max-width: 680px;
+  margin: 20px auto;
+  line-height: 1.6;
+}

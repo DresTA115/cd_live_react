@@ -11,7 +11,7 @@ import { Inicio } from '@pages/Inicio'
 import { Albums } from '@pages/Albums'
 import { Instrumentos } from '@pages/Instrumentos'
 import { Marcos } from '@pages/Marcos'
-import { Buscador } from '@pages/Buscador/Buscador'
+import { Buscador } from '@pages/Buscador'
 
 export function App() {
   const [loginAbierto, setLoginAbierto] = useState(false)

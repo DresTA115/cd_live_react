@@ -1,8 +1,10 @@
+import './Marcos.css'
+
 export function Marcos() {
   return (
-    <section className="paginaMarcos" style={{ padding: '60px 0', textAlign: 'center', color: '#f5f5f5' }}>
+    <section className="paginaMarcos">
       <h1>Marcos para vinilos</h1>
-      <p style={{ maxWidth: '680px', margin: '20px auto', lineHeight: 1.6 }}>
+      <p>
         Estamos trabajando en una nueva colección de marcos personalizados para vinilos. Muy pronto podrás encontrar
         soportes magnéticos, vitrinas y marcos iluminados ideales para exhibir tus discos favoritos.
       </p>
