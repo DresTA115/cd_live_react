@@ -53,7 +53,6 @@ export function ModalRegistro({ abierto, onCerrar, onIrLogin, onRegistroExitoso 
       alert('⚠️ Las claves deben coincidir')
       return
     }
-    alert('✅ Registro exitoso')
     setFormulario(estadoInicial)
     onRegistroExitoso()
   }
