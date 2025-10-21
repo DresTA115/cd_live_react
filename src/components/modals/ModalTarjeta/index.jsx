@@ -9,7 +9,7 @@ const estadoInicial = {
   cvv: '',
 }
 
-export function ModalTarjeta({ abierto, onCerrar }) {
+export function ModalTarjeta({ abierto, onCerrar, onRegistroCompletado }) {
   const [formulario, setFormulario] = useState(estadoInicial)
 
   useEffect(() => {
@@ -59,8 +59,12 @@ export function ModalTarjeta({ abierto, onCerrar }) {
       return
     }
 
-    alert(`✅ Tarjeta registrada correctamente\nTitular: ${formulario.titular}`)
-    setFormulario(estadoInicial)
+
+    if (typeof onRegistroCompletado === 'function') {
+      onRegistroCompletado()
+      return
+    }
+
     onCerrar()
   }
 
