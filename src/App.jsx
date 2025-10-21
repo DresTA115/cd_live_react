@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 import '@styles/global.css'
-
+import { Productos } from './pages/ProductoInstrumentos/productos'
 import { MainLayout } from './layout/MainLayout/MainLayout'
 import { ModalLogin } from '@components/modals/ModalLogin'
 import { ModalRegistro } from '@components/modals/ModalRegistro'
@@ -66,6 +66,8 @@ export function App() {
           <Route path="/instrumentos" element={<Instrumentos />} />
           <Route path="/marcos" element={<Marcos />} />
           <Route path="/buscar" element={<Buscador />} />
+          <Route path="/instrumentos" element={<Instrumentos />} />
+          <Route path="/productos" element={<Productos />} /> 
         </Routes>
       </MainLayout>
 
