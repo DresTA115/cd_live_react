@@ -1,12 +1,9 @@
-import './productos.css'
+import './Productos.css'
 import { useLocation, Link } from 'react-router-dom'
 import { PresentacionProducto } from '../../components/PresentacionProducto/PresentacionProducto'
-import { BottonComprar } from '@components/common/BottonComprar/BottonComprar'
 export function Productos() {
   const location = useLocation()
   const producto = location.state
-
-  console.log('Estado recibido:', producto) // Para debuggear
 
   if (!producto) {
     return (
