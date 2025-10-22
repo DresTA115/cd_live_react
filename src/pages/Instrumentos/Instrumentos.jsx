@@ -3,10 +3,15 @@ import { Link } from 'react-router-dom'
 
 import './Instrumentos.css'
 
-import { instrumentos } from '@data/instrumentos'
+import instrumentosData from '@data/instrumentos.json'
 import { obtenerAsset } from '@data/obtenerAsset'
 import { BottonComprar } from '@components/common/BottonComprar/BottonComprar'
 import { ProductCard } from '@components/common/ProductCard/ProductCard'
+
+const instrumentos = instrumentosData.map((instrumento) => ({
+  ...instrumento,
+  imagen: obtenerAsset(instrumento.imagen, { optional: true }) || instrumento.imagen,
+}))
 
 const categorias = [
   { id: 'cuerda', nombre: 'Cuerda', imagen: obtenerAsset('img/instrumentos/LogoCuerda.png') },

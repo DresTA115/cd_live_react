@@ -1,7 +1,13 @@
 import { Link } from 'react-router-dom'
-import { categoriasInicio } from '@data/categoriasInicio'
+import categoriasData from '@data/categoriasInicio.json'
+import { obtenerAsset } from '@data/obtenerAsset'
 
 import './CategoriasDestacadas.css'
+
+const categoriasInicio = categoriasData.map((categoria) => ({
+  ...categoria,
+  imagen: obtenerAsset(categoria.imagen, { optional: true }) || categoria.imagen,
+}))
 
 export function CategoriasDestacadas() {
   return (

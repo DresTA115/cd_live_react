@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
-import { instrumentos } from '@data/instrumentos'
+import instrumentosData from '@data/instrumentos.json'
+import { obtenerAsset } from '@data/obtenerAsset'
 import { BottonComprar } from '@components/common/BottonComprar/BottonComprar'
 import { ProductCard } from '@components/common/ProductCard/ProductCard'
 
@@ -12,6 +13,11 @@ function formatearPrecio(valor) {
     maximumFractionDigits: 0,
   }).format(valor)
 }
+
+const instrumentos = instrumentosData.map((instrumento) => ({
+  ...instrumento,
+  imagen: obtenerAsset(instrumento.imagen, { optional: true }) || instrumento.imagen,
+}))
 
 export function InstrumentosMasVendidos() {
   const [limite, setLimite] = useState(() => obtenerLimite())

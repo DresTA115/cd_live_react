@@ -1,7 +1,14 @@
 import { useEffect, useMemo, useState } from 'react'
-import { artistasDestacados } from '@data/artistasDestacados'
+
+import artistasData from '@data/artistasDestacados.json'
+import { obtenerAsset } from '@data/obtenerAsset'
 
 import './CarruselArtistas.css'
+
+const artistasDestacados = artistasData.map((artista) => ({
+  ...artista,
+  imagen: obtenerAsset(artista.imagen, { optional: true }) || artista.imagen,
+}))
 
 export function CarruselArtistas() {
   const [indice, setIndice] = useState(0)
