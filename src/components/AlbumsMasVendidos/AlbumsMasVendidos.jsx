@@ -1,9 +1,16 @@
 import { useEffect, useMemo, useState } from 'react'
-import { albums } from '@data/albums'
+
+import albumsData from '@api/albums.json'
+import { obtenerAsset } from '@data/obtenerAsset'
 import { BottonComprar } from '@components/common/BottonComprar/BottonComprar'
 import { ProductCard } from '@components/common/ProductCard/ProductCard'
 
 import './AlbumsMasVendidos.css'
+
+const albums = albumsData.map((album) => ({
+  ...album,
+  imagen: obtenerAsset(album.imagen, { optional: true }) || album.imagen,
+}))
 
 function formatearPrecio(valor) {
   return new Intl.NumberFormat('es-CO', {

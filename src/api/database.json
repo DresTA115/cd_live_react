@@ -1,0 +1,109 @@
+{
+	"albums": [
+		{
+			"id": 1,
+			"artista": "Bad Bunny",
+			"album": "Un Verano Sin Ti",
+			"categoria": "Vinilo",
+			"formato": "Vinilo",
+			"precio": 120000,
+			"imagen": "img/vinilos/X100PRE.jpg",
+			"masVendido": true,
+			"edicion": "Limitada",
+			"promocion": true,
+			"preventa": false
+		},
+		{
+			"id": 2,
+			"artista": "Peso Pluma",
+			"album": "Génesis",
+			"categoria": "Vinilo",
+			"formato": "Vinilo",
+			"precio": 95000,
+			"imagen": "img/vinilos/genesis2.png",
+			"masVendido": true,
+			"edicion": "Estándar",
+			"promocion": false,
+			"preventa": true
+		},
+		{
+			"id": 3,
+			"artista": "Gorillaz",
+			"album": "Plastic Beach",
+			"categoria": "Vinilo",
+			"formato": "Vinilo",
+			"precio": 99000,
+			"imagen": "img/vinilos/plastibeach.png",
+			"masVendido": true,
+			"edicion": "Estándar",
+			"promocion": true,
+			"preventa": false
+		}
+	],
+	"instrumentos": [
+		{
+			"id": 1,
+			"nombre": "Taylor 214ce",
+			"descripcion": "Guitarra acústica Walnut / Spruce",
+			"precio": 5900000,
+			"imagen": "img/instrumentos/Taylor.png",
+			"categoria": "cuerda",
+			"tipo": "guitarra",
+			"compras": 152,
+			"masComprado": true,
+			"detalle": "La Taylor 214ce Walnut / Spruce ofrece un sonido equilibrado y cálido con una gran proyección."
+		},
+		{
+			"id": 2,
+			"nombre": "Yamaha YFL-SV250BR",
+			"descripcion": "Flauta traversa profesional",
+			"precio": 6600000,
+			"imagen": "img/instrumentos/YamahaYFL.png",
+			"categoria": "viento",
+			"tipo": "flauta",
+			"compras": 75,
+			"masComprado": false,
+			"detalle": "Flauta traversa de alto rendimiento con una respuesta precisa y sonido brillante."
+		},
+		{
+			"id": 3,
+			"nombre": "Pearl Export EXX725S",
+			"descripcion": "Batería acústica con platillos Sabian",
+			"precio": 4980000,
+			"imagen": "img/instrumentos/PearlExportEXX725S.png",
+			"categoria": "percusion",
+			"tipo": "batería",
+			"compras": 112,
+			"masComprado": true,
+			"detalle": "Set de batería acústica de 5 piezas ideal para músicos intermedios y avanzados."
+		}
+	],
+	"categoriasInicio": [
+		{
+			"id": 1,
+			"ruta": "/instrumentos",
+			"titulo": "Instrumentos",
+			"imagen": "img/index/instrumentos.png",
+			"descripcion": "Encuentra instrumentos de cuerda, viento y percusión"
+		},
+		{
+			"id": 2,
+			"ruta": "/albums",
+			"titulo": "Álbums",
+			"imagen": "img/index/Vinilos.jpg",
+			"descripcion": "Explora vinilos, cassettes y CD de artistas destacados"
+		},
+		{
+			"id": 3,
+			"ruta": "/marcos",
+			"titulo": "Marcos para vinilos",
+			"imagen": "img/index/VinilosMarco.png",
+			"descripcion": "Protege y luce tus vinilos favoritos"
+		}
+	],
+	"artistasDestacados": [
+		{ "id": 1, "nombre": "Bad Bunny", "imagen": "img/artistas/badbuuny.jpg" },
+		{ "id": 2, "nombre": "Peso Pluma", "imagen": "img/artistas/PesoPlumajpg.jpg" },
+		{ "id": 3, "nombre": "Radiohead", "imagen": "img/artistas/RadioHead.jpg" }
+	]
+}

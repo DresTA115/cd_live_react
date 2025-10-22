@@ -1,12 +1,23 @@
 import { useMemo } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-import { albums } from '@data/albums'
-import { instrumentos } from '@data/instrumentos'
+import albumsData from '@api/albums.json'
+import instrumentosData from '@api/instrumentos.json'
+import { obtenerAsset } from '@data/obtenerAsset'
 import { BottonComprar } from '@components/common/BottonComprar/BottonComprar'
 import { ProductCard } from '@components/common/ProductCard/ProductCard'
 
 import './Buscador.css'
+
+const albums = albumsData.map((album) => ({
+  ...album,
+  imagen: obtenerAsset(album.imagen, { optional: true }) || album.imagen,
+}))
+
+const instrumentos = instrumentosData.map((instrumento) => ({
+  ...instrumento,
+  imagen: obtenerAsset(instrumento.imagen, { optional: true }) || instrumento.imagen,
+}))
 
 const precioFormato = new Intl.NumberFormat('es-CO', {
   style: 'currency',

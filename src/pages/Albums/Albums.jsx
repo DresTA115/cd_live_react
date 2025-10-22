@@ -2,11 +2,16 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 
 import './Albums.css'
 
-import { albums } from '@data/albums'
+import albumsData from '@api/albums.json'
 import { obtenerAsset } from '@data/obtenerAsset'
 import { BottonComprar } from '@components/common/BottonComprar/BottonComprar'
 import { ProductCard } from '@components/common/ProductCard/ProductCard'
 import { AlbumsFilters } from '@components/AlbumsFilters/AlbumsFilters'
+
+const albums = albumsData.map((album) => ({
+  ...album,
+  imagen: obtenerAsset(album.imagen, { optional: true }) || album.imagen,
+}))
 
 const categorias = [
   { id: 'Vinilo', nombre: 'Vinilos', imagen: obtenerAsset('img/logo/LogoVinilo.png') },
