@@ -1,8 +1,8 @@
 import { useMemo } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-import albumsData from '@data/albums.json'
-import instrumentosData from '@data/instrumentos.json'
+import albumsData from '@api/albums.json'
+import instrumentosData from '@api/instrumentos.json'
 import { obtenerAsset } from '@data/obtenerAsset'
 import { BottonComprar } from '@components/common/BottonComprar/BottonComprar'
 import { ProductCard } from '@components/common/ProductCard/ProductCard'

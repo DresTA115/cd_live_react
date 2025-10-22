@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import categoriasData from '@data/categoriasInicio.json'
+import categoriasData from '@api/categoriasInicio.json'
 import { obtenerAsset } from '@data/obtenerAsset'
 
 import './CategoriasDestacadas.css'

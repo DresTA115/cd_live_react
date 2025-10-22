@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import './Instrumentos.css'
 
-import instrumentosData from '@data/instrumentos.json'
+import instrumentosData from '@api/instrumentos.json'
 import { obtenerAsset } from '@data/obtenerAsset'
 import { BottonComprar } from '@components/common/BottonComprar/BottonComprar'
 import { ProductCard } from '@components/common/ProductCard/ProductCard'

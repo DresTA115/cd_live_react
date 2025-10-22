@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 
 import './Albums.css'
 
-import albumsData from '@data/albums.json'
+import albumsData from '@api/albums.json'
 import { obtenerAsset } from '@data/obtenerAsset'
 import { BottonComprar } from '@components/common/BottonComprar/BottonComprar'
 import { ProductCard } from '@components/common/ProductCard/ProductCard'

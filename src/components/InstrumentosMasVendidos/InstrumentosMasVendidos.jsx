@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import instrumentosData from '@data/instrumentos.json'
+import instrumentosData from '@api/instrumentos.json'
 import { obtenerAsset } from '@data/obtenerAsset'
 import { BottonComprar } from '@components/common/BottonComprar/BottonComprar'
 import { ProductCard } from '@components/common/ProductCard/ProductCard'

@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 
-import artistasData from '@data/artistasDestacados.json'
+import artistasData from '@api/artistasDestacados.json'
 import { obtenerAsset } from '@data/obtenerAsset'
 
 import './CarruselArtistas.css'
