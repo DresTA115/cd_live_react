@@ -1,0 +1,35 @@
+[
+  {
+    "nombre": "Taylor",
+    "descripcion": "214ce Walnut / Spruce",
+    "precio": 5900000,
+    "imagen": "img/instrumentos/Taylor.png",
+    "categoria": "cuerda",
+    "tipo": "guitarra",
+    "compras": 152,
+    "masComprado": true,
+    "detalle": "La Taylor 214ce Walnut / Spruce es una guitarra acústica de alta calidad que combina una tapa de abeto con aros y fondo de nogal, ofreciendo un sonido equilibrado y cálido. Ideal para músicos exigentes, destaca por su excelente proyección, comodidad y elegante dise\u00F1o."
+  },
+  {
+    "nombre": "DZ Strad Violín",
+    "descripcion": "Modelo 500",
+    "precio": 13800000,
+    "imagen": "img/instrumentos/DZStradViol\u00EDn.png",
+    "categoria": "cuerda",
+    "tipo": "viol\u00EDn",
+    "compras": 90,
+    "masComprado": false,
+    "detalle": "El DZ Strad Violín Modelo 500 es un instrumento profesional hecho a mano, reconocido por su tono cálido, resonante y su excelente respuesta. Perfecto para músicos avanzados y de concierto, combina artesan\u00EDa tradicional con materiales de alta calidad."
+  },
+  {
+    "nombre": "Cordoba",
+    "descripcion": "C1M Cl\u00E1sica",
+    "precio": 750000,
+    "imagen": "img/instrumentos/Cordoba.png",
+    "categoria": "cuerda",
+    "tipo": "guitarra",
+    "compras": 120,
+    "masComprado": true,
+    "detalle": "La Cordoba C1M Cl\u00E1sica es una guitarra ideal para principiantes y estudiantes, con un tono cálido y un cuerpo ligero que ofrece gran comodidad al tocar. Su dise\u00F1o tradicional y acabado natural reflejan la calidad característica de C\u00F3rdoba."
+  }
+]

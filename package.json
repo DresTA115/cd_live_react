@@ -5,11 +5,18 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "desarrollo": "vite",
     "build": "vite build",
+    "compilar": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "analizar": "eslint .",
+    "preview": "vite preview",
+    "vista": "vite preview",
+    "server": "json-server --watch src/api/database.json --port 3001",
+    "servidor": "json-server --watch src/api/database.json --port 3001"
   },
   "dependencies": {
+    "json-server": "^1.0.0-beta.3",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router-dom": "^7.1.2"

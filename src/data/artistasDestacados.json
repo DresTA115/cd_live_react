@@ -1,0 +1,11 @@
+[
+  { "nombre": "Bad Bunny", "imagen": "img/artistas/badbuuny.jpg" },
+  { "nombre": "Peso Pluma", "imagen": "img/artistas/PesoPlumajpg.jpg" },
+  { "nombre": "Radiohead", "imagen": "img/artistas/RadioHead.jpg" },
+  { "nombre": "Duki", "imagen": "img/artistas/Duki.jpg" },
+  { "nombre": "Doja Cat", "imagen": "img/artistas/DojaCat.jpg" },
+  { "nombre": "Gorillaz", "imagen": "img/artistas/Gorillaz.jpg" },
+  { "nombre": "Nanpa B\u00E1sico", "imagen": "img/artistas/nampa.jpg" },
+  { "nombre": "Bring Me The Horizon", "imagen": "img/artistas/BMTH.jpg" },
+  { "nombre": "Tupac", "imagen": "img/artistas/TUPAC.jpg" }
+]
