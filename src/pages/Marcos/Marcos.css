@@ -1,11 +1,146 @@
-.paginaMarcos {
-  padding: 60px 0;
-  text-align: center;
+.marcos-section {
+  background: #0f0f0f;
   color: #f5f5f5;
+  min-height: 100vh;
+  text-align: center;
+  padding: 50px 20px;
+  font-family: "Montserrat", sans-serif;
 }
 
-.paginaMarcos p {
-  max-width: 680px;
-  margin: 20px auto;
-  line-height: 1.6;
+.titulo {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 40px;
+}
+
+.marco-wrapper {
+  background: #b4b4b4;
+  padding: 40px 20px;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 40px;
+  width: fit-content;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+.marco {
+  border: 15px solid;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #b4b4b4;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ✅ CENTRADO PERFECTO DEL CONTENIDO */
+.vinilo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  height: 90%;
+}
+
+.vinilo img {
+  width: 100%;
+  height: 100%;
+  max-width: 240px;
+  max-height: 240px;
+  object-fit: contain;
+  object-position: center;
+  transition: transform 0.3s ease;
+}
+
+.vinilo img:hover {
+  transform: scale(1.05);
+}
+
+.upload-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 90%;
+  height: 90%;
+  border-radius: 10px;
+  background: #efefef;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.upload-label:hover {
+  background: #e2e2e2;
+}
+
+.upload-text {
+  font-size: 18px;
+  color: #333;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.opciones {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 50px;
+  margin-top: 20px;
+}
+
+.colores,
+.tamanos {
+  text-align: center;
+}
+
+.color-picker {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.color-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #aaa;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.color-btn:hover {
+  transform: scale(1.1);
+}
+
+.color-btn.activo {
+  border-color: #a1182d;
+  box-shadow: 0 0 0 3px #a1182d33;
+}
+
+.tamano-picker {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.tamano-btn {
+  padding: 8px 18px;
+  border-radius: 8px;
+  background: #2a2a2a;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.tamano-btn:hover,
+.tamano-btn.activo {
+  background: #a1182d;
 }
