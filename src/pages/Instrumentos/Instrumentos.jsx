@@ -7,6 +7,7 @@ import instrumentosData from '@api/instrumentos.json'
 import { obtenerAsset } from '@data/obtenerAsset'
 import { BottonComprar } from '@components/common/BottonComprar/BottonComprar'
 import { ProductCard } from '@components/common/ProductCard/ProductCard'
+import { CategoriasInstrumentos } from '@components/CategoriasInstrumentos/CategoriasInstrumentos'
 
 const instrumentos = instrumentosData.map((instrumento) => ({
   ...instrumento,
@@ -31,6 +32,10 @@ function formatearPrecio(valor) {
 export function Instrumentos() {
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null)
 
+  const manejarSeleccionCategoria = (id) => {
+    setCategoriaSeleccionada((actual) => (actual === id ? null : id))
+  }
+
   const listaFiltrada = useMemo(() => {
     if (!categoriaSeleccionada) {
       return instrumentos
@@ -45,27 +50,11 @@ export function Instrumentos() {
 
   return (
     <div className="paginaInstrumentos">
-      <section className="productos">
-        <div className="titulo">
-          <h1>Instrumentos</h1>
-        </div>
-        <div className="contenedorProductos">
-          {categorias.map((categoria) => {
-            const activa = categoriaSeleccionada === categoria.id
-            return (
-              <button
-                type="button"
-                key={categoria.id}
-                className={`producto${activa ? ' activo' : ''}`}
-                onClick={() => setCategoriaSeleccionada(activa ? null : categoria.id)}
-              >
-                <img src={categoria.imagen} alt={categoria.nombre} />
-                <p>{categoria.nombre}</p>
-              </button>
-            )
-          })}
-        </div>
-      </section>
+      <CategoriasInstrumentos
+        categorias={categorias}
+        categoriaSeleccionada={categoriaSeleccionada}
+        onSeleccionarCategoria={manejarSeleccionCategoria}
+      />
 
       <div className="titulo">
         <h2>Productos</h2>

@@ -1,3 +1,5 @@
+import './AlbumsFilters.css'
+
 import { FilterButton } from '@components/common/FilterButton/FilterButton'
 
 export function AlbumsFilters({

@@ -1,32 +1,71 @@
+import { useMemo, useState } from 'react'
+
 import './Marcos.css'
-import { useState } from "react";
+
+import albumsData from '@api/albums.json'
+import { obtenerAsset } from '@data/obtenerAsset'
 
 export function Marcos() {
-  const [colorMarco, setColorMarco] = useState("negro");
-  const [tamano, setTamano] = useState("mediano");
-  const [imagenVinilo, setImagenVinilo] = useState(null); // sin imagen inicial
+  const albums = useMemo(
+    () =>
+      albumsData.map((album) => {
+        const imagenProcesada = obtenerAsset(album.imagen, { optional: true }) || album.imagen
+
+        let imagenAlbumProcesada = ''
+        if (album.imagenAlbum) {
+          imagenAlbumProcesada = obtenerAsset(album.imagenAlbum, { optional: true }) || album.imagenAlbum
+        }
+
+        return {
+          ...album,
+          imagen: imagenProcesada,
+          imagenAlbum: imagenAlbumProcesada,
+        }
+      }),
+    [],
+  )
+
+  const crearIdAlbum = (item) => `${item.artista} - ${item.album}`
+
+  const [colorMarco, setColorMarco] = useState('negro')
+  const [tamano, setTamano] = useState('mediano')
+  const [albumSeleccionadoId, setAlbumSeleccionadoId] = useState(() => (albums[0] ? crearIdAlbum(albums[0]) : ''))
 
   const colores = [
-    { nombre: "Negro", valor: "negro", hex: "#000000" },
-    { nombre: "Blanco", valor: "blanco", hex: "#ffffff" },
-    { nombre: "Roble", valor: "roble", hex: "#b38b59" },
-    { nombre: "Nogal", valor: "nogal", hex: "#6b4f3a" },
-  ];
+    { nombre: 'Rojo', valor: 'rojo', hex: '#aa1a1ae2' },
+    { nombre: 'Negro', valor: 'negro', hex: '#000000' },
+    { nombre: 'Roble', valor: 'roble', hex: '#b38b59' },
+    { nombre: 'Nogal', valor: 'nogal', hex: '#6b4f3a' },
+  ]
 
   const tamanos = {
-    pequeño: "200px",
-    mediano: "300px",
-    grande: "400px",
-  };
+    pequeño: '280px',
+    mediano: '340px',
+    grande: '420px',
+  }
 
-  const manejarCambioImagen = (e) => {
-    const archivo = e.target.files[0];
-    if (archivo) {
-      const reader = new FileReader();
-      reader.onload = () => setImagenVinilo(reader.result);
-      reader.readAsDataURL(archivo);
-    }
-  };
+  const manejarSeleccionAlbum = (valor) => {
+    setAlbumSeleccionadoId(valor)
+  }
+
+  const albumSeleccionado = useMemo(
+    () => albums.find((item) => crearIdAlbum(item) === albumSeleccionadoId) ?? null,
+    [albums, albumSeleccionadoId],
+  )
+
+  const opcionesAlbum = useMemo(
+    () =>
+      albums.map((item) => ({
+        id: crearIdAlbum(item),
+        etiqueta: `${item.artista} - ${item.album}`,
+      })),
+    [albums],
+  )
+
+  const imagenVinilo = albumSeleccionado?.imagenAlbum || ''
+  const nombreAlbumSeleccionado = albumSeleccionado
+    ? `${albumSeleccionado.artista} - ${albumSeleccionado.album}`
+    : 'Selecciona un álbum'
 
   return (
     <div className="marcos-section">
@@ -41,21 +80,12 @@ export function Marcos() {
             height: tamanos[tamano],
           }}
         >
-          {!imagenVinilo ? (
-            <label htmlFor="inputImagen" className="upload-label">
-              <span className="upload-text">Carga tu vinilo</span>
-              <input
-                type="file"
-                id="inputImagen"
-                accept="image/*"
-                onChange={manejarCambioImagen}
-                style={{ display: "none" }}
-              />
-            </label>
-          ) : (
+          {imagenVinilo ? (
             <div className="vinilo">
-              <img src={imagenVinilo} alt="Vinilo personalizado" />
+              <img src={imagenVinilo} alt={nombreAlbumSeleccionado} />
             </div>
+          ) : (
+            <div className="vinilo-placeholder">No hay álbum disponible</div>
           )}
         </div>
       </div>
@@ -92,9 +122,24 @@ export function Marcos() {
             ))}
           </div>
         </div>
+
+        <div className="albumes">
+          <h3>Selecciona un álbum</h3>
+          <select
+            className="album-select"
+            value={albumSeleccionadoId}
+            onChange={(event) => manejarSeleccionAlbum(event.target.value)}
+          >
+            {opcionesAlbum.map((opcion) => (
+              <option key={opcion.id} value={opcion.id}>
+                {opcion.etiqueta}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
     </div>
-  );
+  )
 }
 
 export default Marcos
