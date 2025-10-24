@@ -16,6 +16,12 @@
   position: relative;
 }
 
+.productLink {
+  text-decoration: none;
+  color: inherit;
+  display: contents;
+}
+
 .productosMasVendidos h2::after {
   content: "";
   display: block;
