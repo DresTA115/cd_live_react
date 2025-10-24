@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 import './Marcos.css'
 
@@ -26,10 +26,12 @@ export function Marcos() {
   )
 
   const crearIdAlbum = (item) => `${item.artista} - ${item.album}`
+  const crearEtiquetaAlbum = (item) => `${item.artista} - ${item.album}`
 
   const [colorMarco, setColorMarco] = useState('negro')
   const [tamano, setTamano] = useState('mediano')
   const [albumSeleccionadoId, setAlbumSeleccionadoId] = useState(() => (albums[0] ? crearIdAlbum(albums[0]) : ''))
+  const [busquedaAlbum, setBusquedaAlbum] = useState(() => (albums[0] ? crearEtiquetaAlbum(albums[0]) : ''))
 
   const colores = [
     { nombre: 'Rojo', valor: 'rojo', hex: '#aa1a1ae2' },
@@ -44,8 +46,12 @@ export function Marcos() {
     grande: '420px',
   }
 
-  const manejarSeleccionAlbum = (valor) => {
-    setAlbumSeleccionadoId(valor)
+  const seleccionarAlbumPorId = (id) => {
+    setAlbumSeleccionadoId(id)
+    const encontrado = albums.find((item) => crearIdAlbum(item) === id)
+    if (encontrado) {
+      setBusquedaAlbum(crearEtiquetaAlbum(encontrado))
+    }
   }
 
   const albumSeleccionado = useMemo(
@@ -53,14 +59,55 @@ export function Marcos() {
     [albums, albumSeleccionadoId],
   )
 
+  useEffect(() => {
+    if (albumSeleccionado) {
+      setBusquedaAlbum(crearEtiquetaAlbum(albumSeleccionado))
+    }
+  }, [albumSeleccionado])
+
   const opcionesAlbum = useMemo(
     () =>
       albums.map((item) => ({
         id: crearIdAlbum(item),
-        etiqueta: `${item.artista} - ${item.album}`,
+        etiqueta: crearEtiquetaAlbum(item),
       })),
     [albums],
   )
+
+  const resultadosBusqueda = useMemo(() => {
+    const termino = busquedaAlbum.trim().toLowerCase()
+    if (!termino) {
+      return opcionesAlbum
+    }
+
+    return opcionesAlbum.filter((opcion) => opcion.etiqueta.toLowerCase().includes(termino))
+  }, [busquedaAlbum, opcionesAlbum])
+
+  const sugerenciasVisibles = useMemo(() => resultadosBusqueda.slice(0, 6), [resultadosBusqueda])
+
+  const confirmarBusquedaActual = () => {
+    const termino = busquedaAlbum.trim().toLowerCase()
+    if (!termino) {
+      return
+    }
+
+    const coincidenciaExacta = albums.find(
+      (item) => crearEtiquetaAlbum(item).toLowerCase() === termino,
+    )
+
+    if (coincidenciaExacta) {
+      seleccionarAlbumPorId(crearIdAlbum(coincidenciaExacta))
+      return
+    }
+
+    const coincidenciaParcial = albums.find((item) =>
+      crearEtiquetaAlbum(item).toLowerCase().includes(termino),
+    )
+
+    if (coincidenciaParcial) {
+      seleccionarAlbumPorId(crearIdAlbum(coincidenciaParcial))
+    }
+  }
 
   const imagenVinilo = albumSeleccionado?.imagenAlbum || ''
   const nombreAlbumSeleccionado = albumSeleccionado
@@ -124,18 +171,43 @@ export function Marcos() {
         </div>
 
         <div className="albumes">
-          <h3>Selecciona un álbum</h3>
-          <select
-            className="album-select"
-            value={albumSeleccionadoId}
-            onChange={(event) => manejarSeleccionAlbum(event.target.value)}
-          >
-            {opcionesAlbum.map((opcion) => (
-              <option key={opcion.id} value={opcion.id}>
-                {opcion.etiqueta}
-              </option>
-            ))}
-          </select>
+          <h3>Busca un álbum</h3>
+          <div className="album-search">
+            <input
+              type="search"
+              className="album-searchInput"
+              placeholder="Escribe artista o álbum"
+              value={busquedaAlbum}
+              onChange={(event) => setBusquedaAlbum(event.target.value)}
+              onBlur={confirmarBusquedaActual}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter') {
+                  event.preventDefault()
+                  confirmarBusquedaActual()
+                }
+              }}
+            />
+          </div>
+          {sugerenciasVisibles.length > 0 ? (
+            <ul className="album-searchResults">
+              {sugerenciasVisibles.map((opcion) => (
+                <li key={opcion.id}>
+                  <button
+                    type="button"
+                    onMouseDown={(event) => event.preventDefault()}
+                    onClick={() => seleccionarAlbumPorId(opcion.id)}
+                    className={
+                      opcion.id === albumSeleccionadoId ? 'resultado-activo' : undefined
+                    }
+                  >
+                    {opcion.etiqueta}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="album-searchEmpty">Sin coincidencias</p>
+          )}
         </div>
       </div>
     </div>
