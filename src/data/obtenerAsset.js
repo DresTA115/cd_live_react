@@ -4,6 +4,9 @@ const recursosEstaticos = import.meta.glob('../assets/**/*.{png,jpg,jpeg,webp,sv
 })
 
 function normalizarRuta(ruta) {
+  if (typeof ruta !== 'string' || ruta.length === 0) {
+    return ''
+  }
   if (ruta.startsWith('img/')) {
     return `images/${ruta.slice(4)}`
   }
@@ -11,7 +14,15 @@ function normalizarRuta(ruta) {
 }
 
 export function obtenerAsset(ruta, { optional = false } = {}) {
-  const clave = `../assets/${normalizarRuta(ruta)}`
+  const rutaNormalizada = normalizarRuta(ruta)
+  if (!rutaNormalizada) {
+    if (!optional && ruta) {
+      console.warn(`[assets] Ruta inválida: ${String(ruta)}`)
+    }
+    return ''
+  }
+
+  const clave = `../assets/${rutaNormalizada}`
   const recurso = recursosEstaticos[clave]
 
   if (!recurso) {

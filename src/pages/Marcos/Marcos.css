@@ -1,4 +1,5 @@
 .marcos-section {
+  --vinilo-size: 240px;
   background: #0f0f0f;
   color: #f5f5f5;
   min-height: 100vh;
@@ -14,7 +15,7 @@
 }
 
 .marco-wrapper {
-  background: #b4b4b4;
+  background: white;
   padding: 40px 20px;
   border-radius: 16px;
   display: flex;
@@ -23,66 +24,90 @@
   margin: 0 auto 40px;
   width: fit-content;
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+  perspective: 1000px; /* 💡 da profundidad */
 }
 
 .marco {
-  border: 15px solid;
-  border-radius: 10px;
+  border: 15px solid #3d2d1a;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #b4b4b4;
-  transition: all 0.3s ease;
+  transition: all 0.4s ease;
   position: relative;
   overflow: hidden;
+  box-shadow:
+    0 6px 15px rgba(0, 0, 0, 0.4),
+    inset 0 3px 6px rgba(255, 255, 255, 0.25);
+  transform-style: preserve-3d;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0) 60%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(0, 0, 0, 0.15));
 }
 
-/* ✅ CENTRADO PERFECTO DEL CONTENIDO */
+.marco:hover {
+  transform: rotateY(8deg) rotateX(4deg) scale(1.02);
+  box-shadow:
+    0 12px 25px rgba(0, 0, 0, 0.5),
+    inset 0 2px 10px rgba(255, 255, 255, 0.3);
+}
+
+.marco::before,
+.marco::after {
+  content: '';
+  position: absolute;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.marco::before {
+  inset: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.35);
+  mix-blend-mode: screen;
+}
+
+.marco::after {
+  inset: 0;
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.3), transparent 45%, rgba(0, 0, 0, 0.25));
+  opacity: 0.65;
+}
+
 .vinilo {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 90%;
-  height: 90%;
+  width: var(--vinilo-size);
+  height: var(--vinilo-size);
+  transform: translateZ(25px); /* 💡 vinilo flotante */
 }
 
 .vinilo img {
+  background-color: transparent;
   width: 100%;
   height: 100%;
   max-width: 240px;
   max-height: 240px;
   object-fit: contain;
   object-position: center;
-  transition: transform 0.3s ease;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transform: translateZ(20px);
+  filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.45));
 }
 
-.vinilo img:hover {
-  transform: scale(1.05);
-}
 
-.upload-label {
+.vinilo-placeholder {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
   width: 90%;
   height: 90%;
   border-radius: 10px;
-  background: #efefef;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.upload-label:hover {
-  background: #e2e2e2;
-}
-
-.upload-text {
-  font-size: 18px;
-  color: #333;
-  font-weight: 500;
+  color: #1f1f1f;
+  font-weight: 600;
+  letter-spacing: 0.5px;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  transform: translateZ(20px);
 }
 
 .opciones {
@@ -111,11 +136,12 @@
   border-radius: 50%;
   border: 2px solid #aaa;
   cursor: pointer;
-  transition: transform 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .color-btn:hover {
-  transform: scale(1.1);
+  transform: scale(1.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .color-btn.activo {
@@ -137,10 +163,35 @@
   color: white;
   border: none;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background 0.3s, transform 0.3s;
 }
 
 .tamano-btn:hover,
 .tamano-btn.activo {
   background: #a1182d;
+  transform: translateY(-2px);
+}
+
+.albumes {
+  text-align: center;
+  max-width: 320px;
+}
+
+.album-select {
+  margin-top: 14px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(0, 0, 0, 0.4);
+  color: #f5f5f5;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.album-select:hover,
+.album-select:focus {
+  border-color: #a1182d;
+  background: rgba(0, 0, 0, 0.6);
+  outline: none;
 }

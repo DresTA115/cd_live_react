@@ -61,5 +61,5 @@ function obtenerLimite() {
   if (typeof window === 'undefined') {
     return 4
   }
-  return window.innerWidth <= 768 ? 3 : 4
+  return window.innerWidth <= 768 ? 2 : 4
 }

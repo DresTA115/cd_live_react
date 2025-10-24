@@ -1,29 +1,25 @@
-.paginaAlbums {
-  padding: 60px 0 80px;
-  color: #f5f5f5;
-}
-
-.paginaAlbums .productos {
+.productosDeInstrumentos {
   background: #2a2a2a;
   border-radius: 60px;
-  padding: 40px 24px;
+  padding: 40px 20px;
   margin: 0 auto 40px;
   width: min(1100px, 92%);
   text-align: center;
   box-shadow: 0 10px 35px rgba(0, 0, 0, 0.35);
 }
 
-.paginaAlbums .titulo h1,
-.paginaAlbums .titulo h2 {
-  font-size: clamp(1.8rem, 2.6vw, 2.3rem);
-  font-weight: 600;
+.productosDeInstrumentos .titulo h1 {
   margin-bottom: 60px;
-  text-align: center;
-  
 }
 
+.productosDeInstrumentos .contenedorProductos {
+  display: flex;
+  justify-content: center;
+  gap: clamp(1.5rem, 6vw, 4rem);
+  flex-wrap: wrap;
+}
 
-.paginaAlbums .producto {
+.productosDeInstrumentos .producto {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -36,7 +32,7 @@
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.paginaAlbums .producto img {
+.productosDeInstrumentos .producto img {
   width: clamp(120px, 18vw, 180px);
   height: clamp(120px, 18vw, 180px);
   border-radius: 50%;
@@ -45,31 +41,24 @@
   transition: inherit;
 }
 
-.paginaAlbums .producto p {
+.productosDeInstrumentos .producto p {
   font-size: clamp(1rem, 2.1vw, 1.35rem);
   font-weight: 600;
 }
 
-.paginaAlbums .producto:hover,
-.paginaAlbums .producto.activo {
+.productosDeInstrumentos .producto:hover,
+.productosDeInstrumentos .producto.activo {
   transform: translateY(-6px);
 }
 
-
-
-.paginaAlbums .albums {
-  width: min(1200px, 94%);
-  margin: 0 auto;
+.productosDeInstrumentos .producto:hover p,
+.productosDeInstrumentos .producto.activo p {
+  color: brown;
 }
 
 @media (max-width: 768px) {
-  .paginaAlbums {
-    padding: 40px 0 60px;
-  }
-
-  .paginaAlbums .productos {
+  .productosDeInstrumentos {
     border-radius: 40px;
     padding: 32px 18px;
   }
-
 }
