@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
 import instrumentosData from '@api/instrumentos.json'
 import { obtenerAsset } from '@data/obtenerAsset'
 import { BottonComprar } from '@components/common/BottonComprar/BottonComprar'
@@ -12,6 +13,13 @@ function formatearPrecio(valor) {
     currency: 'COP',
     maximumFractionDigits: 0,
   }).format(valor)
+}
+
+function obtenerLimite() {
+  if (typeof window === 'undefined') {
+    return 4
+  }
+  return window.innerWidth <= 768 ? 2 : 4
 }
 
 const instrumentos = instrumentosData.map((instrumento) => ({
@@ -39,27 +47,26 @@ export function InstrumentosMasVendidos() {
   return (
     <section className="productosMasVendidos">
       <h2>Instrumentos más Vendidos</h2>
-  <div className="productGrid">
+      <div className="productGrid">
         {lista.map((instrumento) => (
-          <ProductCard
+          <Link
             key={instrumento.nombre}
-            imageSrc={instrumento.imagen}
-            imageAlt={instrumento.nombre}
+            to="/productos"
+            state={instrumento}
+            className="productLink"
           >
-            <h3>{instrumento.nombre}</h3>
-            <p>{instrumento.descripcion}</p>
-            <span className="precio">{formatearPrecio(instrumento.precio)}</span>
-            <BottonComprar />
-          </ProductCard>
+            <ProductCard
+              imageSrc={instrumento.imagen}
+              imageAlt={instrumento.nombre}
+            >
+              <h3>{instrumento.nombre}</h3>
+              <p>{instrumento.descripcion}</p>
+              <span className="precio">{formatearPrecio(instrumento.precio)}</span>
+              <BottonComprar />
+            </ProductCard>
+          </Link>
         ))}
       </div>
     </section>
   )
-}
-
-function obtenerLimite() {
-  if (typeof window === 'undefined') {
-    return 4
-  }
-  return window.innerWidth <= 768 ? 2 : 4
 }
