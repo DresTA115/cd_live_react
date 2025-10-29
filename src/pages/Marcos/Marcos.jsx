@@ -32,19 +32,47 @@ export function Marcos() {
   const [tamano, setTamano] = useState('mediano')
   const [albumSeleccionadoId, setAlbumSeleccionadoId] = useState(() => (albums[0] ? crearIdAlbum(albums[0]) : ''))
   const [busquedaAlbum, setBusquedaAlbum] = useState(() => (albums[0] ? crearEtiquetaAlbum(albums[0]) : ''))
+  const [mostrarSugerencias, setMostrarSugerencias] = useState(false)
 
-  const colores = [
-    { nombre: 'Rojo', valor: 'rojo', hex: '#aa1a1ae2' },
-    { nombre: 'Negro', valor: 'negro', hex: '#000000' },
-    { nombre: 'Roble', valor: 'roble', hex: '#b38b59' },
-    { nombre: 'Nogal', valor: 'nogal', hex: '#6b4f3a' },
-  ]
+  const colores = useMemo(
+    () => [
+      {
+        nombre: 'Madera roja',
+        valor: 'rojo',
+        textura: obtenerAsset('img/texturas/MaderaRoja.png', { optional: true }),
+      },
+      {
+        nombre: 'Madera oscura',
+        valor: 'negro',
+        textura: obtenerAsset('img/texturas/MaderaNegra.png', { optional: true }),
+      },
+      {
+        nombre: 'Robleclaro',
+        valor: 'roble',
+        textura: obtenerAsset('img/texturas/Maderablanca.png', { optional: true }),
+      },
+      {
+        nombre: 'Nogal',
+        valor: 'nogal',
+        textura: obtenerAsset('img/texturas/MaderaClara.png', { optional: true }),
+      },
+      {
+        nombre: 'Madera oscura',
+        valor: 'madera',
+        textura: obtenerAsset('img/texturas/MaderaOscura.png', { optional: true }),
+      },
+    ],
+    [],
+  )
 
-  const tamanos = {
-    pequeño: '280px',
-    mediano: '340px',
-    grande: '420px',
-  }
+  const tamanos = useMemo(
+    () => ({
+      pequeño: '280px',
+      mediano: '340px',
+      grande: '420px',
+    }),
+    [],
+  )
 
   const seleccionarAlbumPorId = (id) => {
     setAlbumSeleccionadoId(id)
@@ -52,7 +80,37 @@ export function Marcos() {
     if (encontrado) {
       setBusquedaAlbum(crearEtiquetaAlbum(encontrado))
     }
+
+    setMostrarSugerencias(false)
   }
+
+  const colorSeleccionado = useMemo(
+    () => colores.find((item) => item.valor === colorMarco) ?? null,
+    [colores, colorMarco],
+  )
+
+  const dimensionMarco = useMemo(
+    () => tamanos[tamano] ?? tamanos.mediano,
+    [tamanos, tamano],
+  )
+
+  const estiloMarco = useMemo(() => {
+    const estiloBase = {
+      width: dimensionMarco,
+      height: dimensionMarco,
+    }
+
+    if (colorSeleccionado?.textura) {
+      estiloBase.borderWidth = '15px'
+      estiloBase.borderStyle = 'solid'
+      estiloBase.borderColor = 'transparent'
+      estiloBase.borderImageSource = `url(${colorSeleccionado.textura})`
+      estiloBase.borderImageSlice = 40
+      estiloBase.borderImageRepeat = 'stretch'
+    }
+
+    return estiloBase
+  }, [colorSeleccionado, dimensionMarco])
 
   const albumSeleccionado = useMemo(
     () => albums.find((item) => crearIdAlbum(item) === albumSeleccionadoId) ?? null,
@@ -83,11 +141,12 @@ export function Marcos() {
     return opcionesAlbum.filter((opcion) => opcion.etiqueta.toLowerCase().includes(termino))
   }, [busquedaAlbum, opcionesAlbum])
 
-  const sugerenciasVisibles = useMemo(() => resultadosBusqueda.slice(0, 6), [resultadosBusqueda])
+  const sugerenciasVisibles = useMemo(() => resultadosBusqueda.slice(0, 3), [resultadosBusqueda])
 
   const confirmarBusquedaActual = () => {
     const termino = busquedaAlbum.trim().toLowerCase()
     if (!termino) {
+      setMostrarSugerencias(false)
       return
     }
 
@@ -107,6 +166,13 @@ export function Marcos() {
     if (coincidenciaParcial) {
       seleccionarAlbumPorId(crearIdAlbum(coincidenciaParcial))
     }
+
+    setMostrarSugerencias(false)
+  }
+
+  const manejarBlurBusqueda = () => {
+    confirmarBusquedaActual()
+    setMostrarSugerencias(false)
   }
 
   const imagenVinilo = albumSeleccionado?.imagenAlbum || ''
@@ -121,11 +187,7 @@ export function Marcos() {
       <div className="marco-wrapper">
         <div
           className="marco"
-          style={{
-            borderColor: colores.find((c) => c.valor === colorMarco).hex,
-            width: tamanos[tamano],
-            height: tamanos[tamano],
-          }}
+          style={estiloMarco}
         >
           {imagenVinilo ? (
             <div className="vinilo">
@@ -141,17 +203,25 @@ export function Marcos() {
         <div className="colores">
           <h3>Colores del marco</h3>
           <div className="color-picker">
-            {colores.map((c) => (
-              <button
-                key={c.valor}
-                className={`color-btn ${
-                  colorMarco === c.valor ? "activo" : ""
-                }`}
-                style={{ backgroundColor: c.hex }}
-                onClick={() => setColorMarco(c.valor)}
-                aria-label={`Color ${c.nombre}`}
-              />
-            ))}
+            {colores.map((c) => {
+              const estiloBoton = c.textura
+                ? {
+                    backgroundImage: `url(${c.textura})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  }
+                : { backgroundColor: c.hex }
+
+              return (
+                <button
+                  key={c.valor}
+                  className={`color-btn ${colorMarco === c.valor ? 'activo' : ''}`}
+                  style={estiloBoton}
+                  onClick={() => setColorMarco(c.valor)}
+                  aria-label={`Color ${c.nombre}`}
+                />
+              )
+            })}
           </div>
         </div>
 
@@ -178,17 +248,22 @@ export function Marcos() {
               className="album-searchInput"
               placeholder="Escribe artista o álbum"
               value={busquedaAlbum}
-              onChange={(event) => setBusquedaAlbum(event.target.value)}
-              onBlur={confirmarBusquedaActual}
+              onChange={(event) => {
+                setBusquedaAlbum(event.target.value)
+                setMostrarSugerencias(true)
+              }}
+              onFocus={() => setMostrarSugerencias(true)}
+              onBlur={manejarBlurBusqueda}
               onKeyDown={(event) => {
                 if (event.key === 'Enter') {
                   event.preventDefault()
                   confirmarBusquedaActual()
+                  setMostrarSugerencias(false)
                 }
               }}
             />
           </div>
-          {sugerenciasVisibles.length > 0 ? (
+          {mostrarSugerencias && sugerenciasVisibles.length > 0 ? (
             <ul className="album-searchResults">
               {sugerenciasVisibles.map((opcion) => (
                 <li key={opcion.id}>
@@ -205,9 +280,10 @@ export function Marcos() {
                 </li>
               ))}
             </ul>
-          ) : (
+          ) : null}
+          {mostrarSugerencias && sugerenciasVisibles.length === 0 ? (
             <p className="album-searchEmpty">Sin coincidencias</p>
-          )}
+          ) : null}
         </div>
       </div>
     </div>
