@@ -22,35 +22,9 @@ export function PresentacionAlbums({ Vista }) {
     }).format(valor)
   }
 
- /*  return (
-    <div className="contenedorPresentacion">
-      {/* Primera tarjeta: Imagen y precio }
-      <article className="tarjetaProducto">
-        {Albums.imagen && (
-          <img 
-            src={producto.imagen} 
-            alt={producto.nombre} 
-            className="imagenProducto" 
-          />
-        )}
-      </article>
-
-      {/* Segunda tarjeta: Nombre y detalle }
-      <article className="tarjetaProducto">
-        <h2 className='nombre'>{Albums.nombre}</h2>
-        <p className="descripcionProducto">
-          {Albums.detalle}
-        </p>
-        <div className="precioProducto">
-          {formatearPrecio(Albums.precio)}
-          <div><BottonComprar /></div>
-        </div>
-      </article>
-    </div> 
-  )*/
 return (
         <section className="productosMasVendidos">
-      <h2>Instrumentos más Vendidos</h2>
+      <h2>Albums más Vendidos</h2>
       <div className="productGrid">
         {lista.map((album) => (
           <Link

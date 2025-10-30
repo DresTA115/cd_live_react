@@ -8,6 +8,7 @@ import { BottonComprar } from '@components/common/BottonComprar/BottonComprar'
 import { ProductCard } from '@components/common/ProductCard/ProductCard'
 import { AlbumsFilters } from '@components/AlbumsFilters/AlbumsFilters'
 
+
 const albums = albumsData.map((album) => ({
   ...album,
   imagen: obtenerAsset(album.imagen, { optional: true }) || album.imagen,
