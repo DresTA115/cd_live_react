@@ -9,7 +9,7 @@ export function Productos() {
     return (
       <div className="errorContainer">
         <p>No hay datos disponibles</p>
-        <Link to="/instrumentos">Volver a Instrumentos</Link>
+        <Link to="/instrumentos">Volver</Link>
       </div>
     )
   }
@@ -19,7 +19,7 @@ export function Productos() {
           <h1>Detalle del Producto</h1>  
         
       <PresentacionProducto producto={producto} />
-      <Link to="/instrumentos" className="volverLink">Volver a Instrumentos</Link>
+      <Link to="/albums" className="volverLink">Volver</Link>
     </div>
   )
 }
