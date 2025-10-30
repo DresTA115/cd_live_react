@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-
+import { Link } from 'react-router-dom'
 import './Albums.css'
 
 import albumsData from '@api/albums.json'
@@ -139,24 +139,25 @@ export function Albums() {
         <h2>Álbums</h2>
       </div>
 
-      <section className="albums">
+      <section className="Album">
         <div className="productGrid">
           {listaFiltrada.map((album) => (
-            <ProductCard
-              key={`${album.artista}-${album.album}`}
-              imageSrc={album.imagen}
-              imageAlt={album.album}
+            <Link
+              key={`${album.nombre}-${album.descripcion}`}
+              to="/productos"
+              state={album}
+              className="productLink"
             >
-              <h3>{album.artista}</h3>
-              <p>
-                <strong>Álbum:</strong> {album.album}
-              </p>
-              <p>
-                <strong>Formato:</strong> {album.formato}
-              </p>
-              <span className="precio">{formatearPrecio(album.precio)}</span>
-              <BottonComprar />
-            </ProductCard>
+              <ProductCard
+                imageSrc={album.imagen}
+                imageAlt={album.nombre}
+              >
+                <h3>{album.nombre}</h3>
+                <p>{album.descripcion}</p>
+                <span className="precio">{formatearPrecio(album.precio)}</span>
+                <BottonComprar />
+              </ProductCard>
+            </Link>
           ))}
         </div>
       </section>
