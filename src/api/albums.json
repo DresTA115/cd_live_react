@@ -2,6 +2,7 @@
   {
     "artista": "Bad Bunny",
     "album": "Un Verano Sin Ti",
+    "descripcion": "Un Verano Sin Ti - Bad Bunny Vinilo",
     "categoria": "Vinilo",
     "formato": "Vinilo",
     "precio": 120000,
@@ -16,6 +17,7 @@
   {
     "artista": "Peso Pluma",
     "album": "Genesis",
+    "descripcion": "Peso Pluma - Genesis Vinilo",
     "categoria": "Vinilo",
     "formato": "Vinilo",
     "precio": 95000,
@@ -30,6 +32,7 @@
   {
     "artista": "Radiohead",
     "album": "OK Computer",
+    "descripcion": "OK Computer - Radiohead Vinilo",
     "categoria": "Vinilo",
     "formato": "Vinilo",
     "precio": 135000,
@@ -44,6 +47,7 @@
   {
     "artista": "Duki",
     "album": "Ameri",
+    "descripcion": "Duki - Ameri Vinilo",
     "categoria": "Vinilo",
     "formato": "Vinilo",
     "precio": 110000,
@@ -58,6 +62,7 @@
   {
     "artista": "Doja Cat",
     "album": "Hot Pink",
+    "descripcion": "Doja Cat - Hot Pink Vinilo",
     "categoria": "Vinilo",
     "formato": "Vinilo",
     "precio": 125000,
@@ -72,6 +77,7 @@
   {
     "artista": "Gorillaz",
     "album": "Plastic Beach",
+    "descripcion": "Gorillaz - Plastic Beach Vinilo",
     "categoria": "Vinilo",
     "formato": "Vinilo",
     "precio": 99000,
@@ -86,6 +92,7 @@
   {
     "artista": "Nanpa Basico",
     "album": "Unicornio Negro",
+    "descripcion": "Nanpa Basico - Unicornio Negro CD",
     "categoria": "CD",
     "formato": "CD",
     "precio": 85000,
@@ -100,6 +107,7 @@
   {
     "artista": "Bring Me The Horizon",
     "album": "That's The Spirit",
+    "descripcion": "That's The Spirit - Bring Me The Horizon Vinilo",
     "categoria": "Vinilo",
     "formato": "Vinilo",
     "precio": 105000,
@@ -114,6 +122,7 @@
   {
     "artista": "Tupac",
     "album": "All Eyez on Me",
+    "descripcion": "All Eyes on Me - Tupac Cassette",
     "categoria": "Cassette",
     "formato": "Cassette",
     "precio": 98000,
@@ -128,6 +137,7 @@
   {
     "artista": "Adele",
     "album": "30",
+    "descripcion": "Adele - 30 CD",
     "categoria": "CD",
     "formato": "CD",
     "precio": 115000,
@@ -142,6 +152,7 @@
   {
     "artista": "Kendrick Lamar",
     "album": "DAMN.",
+    "descripcion": "Kendrick Lamar - DAMN. CD",
     "categoria": "CD",
     "formato": "CD",
     "precio": 130000,
@@ -156,6 +167,7 @@
   {
     "artista": "Billie Eilish",
     "album": "Happier Than Ever",
+    "descripcion": "Billie Eilish - Happier Than Ever Cassette",
     "categoria": "Cassette",
     "formato": "Cassette",
     "precio": 140000,
@@ -170,6 +182,7 @@
   {
     "artista": "The Weeknd",
     "album": "After Hours",
+    "descripcion": "The Weeknd - After Hours Cassette",
     "categoria": "Cassette",
     "formato": "Cassette",
     "precio": 125000,
@@ -184,6 +197,7 @@
   {
     "artista": "Olivia Rodrigo",
     "album": "SOUR",
+    "descripcion": "Olivia Rodrigo - SOUR CD",
     "categoria": "CD",
     "formato": "CD",
     "precio": 90000,
@@ -198,6 +212,7 @@
   {
     "artista": "J Balvin",
     "album": "Colores",
+    "descripcion": "J Balvin - Colores CD",
     "categoria": "CD",
     "formato": "CD",
     "precio": 115000,
@@ -212,6 +227,7 @@
   {
     "artista": "Miley Cyrus",
     "album": "Plastic Hearts",
+    "descripcion": "Miley Cyrus - Plastic Hearts CD",
     "categoria": "CD",
     "formato": "CD",
     "precio": 128000,
@@ -226,6 +242,7 @@
   {
     "artista": "Travis Scott",
     "album": "Astroworld",
+    "descripcion": "Travis Scott - Astroworld CD",
     "categoria": "CD",
     "formato": "CD",
     "precio": 145000,
@@ -240,6 +257,7 @@
   {
     "artista": "Dua Lipa",
     "album": "Future Nostalgia",
+    "descripcion": "Dua Lipa - Future Nostalgia Cassette",
     "categoria": "Cassette",
     "formato": "Cassette",
     "precio": 98000,
@@ -254,6 +272,7 @@
   {
     "artista": "The Beatles",
     "album": "Abbey Road",
+    "descripcion": "The Beatles - Abbey Road CD",
     "categoria": "CD",
     "formato": "CD",
     "precio": 150000,
