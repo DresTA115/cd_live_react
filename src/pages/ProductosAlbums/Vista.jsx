@@ -1,7 +1,7 @@
 import './Vista.css'
 import { useLocation, Link } from 'react-router-dom'
 import { PresentacionAlbums } from '../../components/PresentacionAlbums/PresentacionAlbums'
-import { Albums } from '../Albums/Albums'
+import { Albums } from '../ProductosAlbums/Vista'
 
 export function Vista() {
   const location = useLocation()
