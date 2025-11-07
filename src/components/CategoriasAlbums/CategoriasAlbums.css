@@ -1,0 +1,64 @@
+.productosDeInstrumentos {
+  background: #2a2a2a;
+  border-radius: 60px;
+  padding: 40px 20px;
+  margin: 0 auto 40px;
+  width: min(1100px, 92%);
+  text-align: center;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.35);
+}
+
+.productosDeInstrumentos .titulo h1 {
+  margin-bottom: 60px;
+}
+
+.productosDeInstrumentos .contenedorProductos {
+  display: flex;
+  justify-content: center;
+  gap: clamp(1.5rem, 6vw, 4rem);
+  flex-wrap: wrap;
+}
+
+.productosDeInstrumentos .producto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.productosDeInstrumentos .producto img {
+  width: clamp(120px, 18vw, 180px);
+  height: clamp(120px, 18vw, 180px);
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+  transition: inherit;
+}
+
+.productosDeInstrumentos .producto p {
+  font-size: clamp(1rem, 2.1vw, 1.35rem);
+  font-weight: 600;
+}
+
+.productosDeInstrumentos .producto:hover,
+.productosDeInstrumentos .producto.activo {
+  transform: translateY(-6px);
+}
+
+.productosDeInstrumentos .producto:hover p,
+.productosDeInstrumentos .producto.activo p {
+  color: brown;
+}
+
+@media (max-width: 768px) {
+  .productosDeInstrumentos {
+    border-radius: 40px;
+    padding: 32px 18px;
+  }
+}

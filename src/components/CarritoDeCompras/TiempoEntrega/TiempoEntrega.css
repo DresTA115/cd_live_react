@@ -1,0 +1,108 @@
+/* Tiempo de entrega */
+.tiempo-entrega {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 20px;
+}
+
+.tiempo-entrega h3 {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 15px 0;
+}
+
+.fecha-entrega {
+  margin-bottom: 20px;
+}
+
+.fecha-entrega label {
+  display: block;
+  color: #ddd;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.fecha-entrega input {
+  width: 100%;
+  background: rgba(161, 24, 45, 0.3);
+  border: 1px solid rgba(161, 24, 45, 0.4);
+  border-radius: 8px;
+  padding: 12px 14px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.fecha-entrega input.fecha-readonly {
+  cursor: default;
+}
+
+.tipo-entrega {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tipo-entrega-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tipo-entrega-option:hover {
+  background: rgba(161, 24, 45, 0.2);
+  border-color: #a1182d;
+  transform: translateX(5px);
+}
+
+.tipo-entrega-option:has(input:checked) {
+  background: rgba(161, 24, 45, 0.3);
+  border-color: #a1182d;
+}
+
+.tipo-entrega input[type="radio"] {
+  accent-color: #a1182d;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.tipo-entrega-texto {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.tipo-entrega-texto strong {
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.tipo-entrega-texto small {
+  color: #aaa;
+  font-size: 0.8rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .tipo-entrega-option {
+    padding: 12px 14px;
+  }
+  
+  .tipo-entrega-texto strong {
+    font-size: 0.9rem;
+  }
+}

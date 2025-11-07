@@ -1,9 +1,10 @@
-import { Albums } from '../pages/Albums/Albums'
 import './PresentacionAlbums.css'
 import { BottonComprar } from '@components/common/BottonComprar/BottonComprar'
-import { AlbumsFilters } from '../AlbumsFilters/AlbumsFilters'
+import { useCarrito } from '../../context/useCarrito'
 
 export function PresentacionAlbums({ Vista }) {
+  const { agregarAlCarrito, abrirCarrito } = useCarrito()
+
   if (!Vista) {
     return (
       <div className="contenedorPresentacion">
@@ -22,29 +23,37 @@ export function PresentacionAlbums({ Vista }) {
     }).format(valor)
   }
 
-return (
-        <section className="productosMasVendidos">
-      <h2>Albums más Vendidos</h2>
-      <div className="productGrid">
-        {lista.map((album) => (
-          <Link
-            key={album.nombre}
-            to="/productos"
-            state={album}
-            className="productLink"
-          >
-            <ProductCard
-              imageSrc={album.imagen}
-              imageAlt={album.nombre}
-            >
-              <h3>{album.nombre}</h3>
-              <p>{album.descripcion}</p>
-              <span className="precio">{formatearPrecio(album.precio)}</span>
-              <BottonComprar />
-            </ProductCard>
-          </Link>
-        ))}
-      </div>
-    </section>
-)
+  const manejarAgregarAlCarrito = (evento) => {
+    evento.preventDefault()
+    evento.stopPropagation()
+    
+    const productoCarrito = {
+      id: `${Vista.album}-${Vista.artista}-${Vista.categoria}`,
+      titulo: Vista.album,
+      artista: Vista.artista,
+      precio: Vista.precio,
+      imagen: Vista.imagen,
+      categoria: Vista.categoria,
+    }
+    
+    agregarAlCarrito(productoCarrito)
+    abrirCarrito()
+  }
+
+  return (
+    <div className="contenedorPresentacion">
+      <article className="tarjetaProducto">
+        <div className="imagenProducto">
+          <img src={Vista.imagen} alt={Vista.album} />
+        </div>
+        <div className="detallesProducto">
+          <h2>{Vista.album}</h2>
+          <p className="descripcion">{Vista.artista}</p>
+          <p className="precio">{formatearPrecio(Vista.precio)}</p>
+          <p className="categoria">Categoría: {Vista.categoria}</p>
+          <BottonComprar onClick={manejarAgregarAlCarrito} />
+        </div>
+      </article>
+    </div>
+  )
 } 

@@ -2,12 +2,15 @@ import { useEffect, useState } from 'react'
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 
 import { Logo } from '@components/common/Logo/Logo'
+import { useCarrito } from '../../context/useCarrito'
 import './Header.css'
 
 export function Header({ onOpenLogin }) {
   const navigate = useNavigate()
   const location = useLocation()
   const [query, setQuery] = useState('')
+  const { abrirCarrito, obtenerCantidadTotal } = useCarrito()
+  const cantidadCarrito = obtenerCantidadTotal()
 
   useEffect(() => {
     if (location.pathname !== '/buscar') {
@@ -74,8 +77,9 @@ export function Header({ onOpenLogin }) {
         <button type="button" className="Cuenta" onClick={onOpenLogin} aria-label="Abrir inicio de sesión">
           <span className="material-symbols-outlined">person</span>
         </button>
-        <button type="button" className="carrito" aria-label="Ver carrito">
+        <button type="button" className="carrito" aria-label="Ver carrito" onClick={abrirCarrito}>
           <span className="material-symbols-outlined">shopping_cart</span>
+          {cantidadCarrito > 0 && <span className="carrito-badge">{cantidadCarrito}</span>}
         </button>
       </nav>
     </header>

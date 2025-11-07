@@ -1,7 +1,10 @@
 import './PresentacionProducto.css'
 import { BottonComprar } from '@components/common/BottonComprar/BottonComprar'
+import { useCarrito } from '../../context/useCarrito'
 
 export function PresentacionProducto({ producto }) {
+  const { agregarAlCarrito, abrirCarrito } = useCarrito()
+
   if (!producto) {
     return (
       <div className="contenedorPresentacion">
@@ -18,6 +21,20 @@ export function PresentacionProducto({ producto }) {
       currency: 'COP',
       maximumFractionDigits: 0,
     }).format(valor)
+  }
+
+  const manejarAgregarAlCarrito = () => {
+    const productoCarrito = {
+      id: `${producto.nombre}-${producto.descripcion || producto.detalle}`,
+      titulo: producto.nombre,
+      artista: producto.descripcion || producto.detalle || '',
+      precio: formatearPrecio(producto.precio),
+      imagen: producto.imagen,
+      categoria: producto.categoria,
+    }
+    
+    agregarAlCarrito(productoCarrito)
+    abrirCarrito()
   }
 
   return (
@@ -41,7 +58,7 @@ export function PresentacionProducto({ producto }) {
         </p>
         <div className="precioProducto">
           {formatearPrecio(producto.precio)}
-          <div><BottonComprar /></div>
+          <div><BottonComprar onClick={manejarAgregarAlCarrito} /></div>
         </div>
       </article>
     </div>

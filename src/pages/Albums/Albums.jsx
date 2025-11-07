@@ -7,6 +7,8 @@ import { obtenerAsset } from '@data/obtenerAsset'
 import { BottonComprar } from '@components/common/BottonComprar/BottonComprar'
 import { ProductCard } from '@components/common/ProductCard/ProductCard'
 import { AlbumsFilters } from '@components/AlbumsFilters/AlbumsFilters'
+import { CategoriasAlbums } from '@components/CategoriasAlbums/CategoriasAlbums'
+import { useCarrito } from '../../context/useCarrito'
 
 
 const albums = albumsData.map((album) => ({
@@ -35,6 +37,8 @@ export function Albums() {
   const [ordenPrecio, setOrdenPrecio] = useState(null)
   const [menuEdicionVisible, setMenuEdicionVisible] = useState(false)
   const [menuPrecioVisible, setMenuPrecioVisible] = useState(false)
+
+  const { agregarAlCarrito, abrirCarrito } = useCarrito()
 
   const refEdicion = useRef(null)
   const refPrecio = useRef(null)
@@ -79,7 +83,7 @@ export function Albums() {
     return resultado
   }, [categoriaSeleccionada, edicionSeleccionada, filtroEspecial, ordenPrecio])
 
-  function alternarCategoria(id) {
+  const manejarSeleccionCategoria = (id) => {
     setCategoriaSeleccionada((actual) => (actual === id ? null : id))
   }
 
@@ -97,29 +101,30 @@ export function Albums() {
     setMenuPrecioVisible(false)
   }
 
+  const manejarAgregarAlCarrito = (evento, album) => {
+    evento.preventDefault()
+    evento.stopPropagation()
+    
+    const productoCarrito = {
+      id: `${album.album}-${album.artista}-${album.categoria}`,
+      titulo: album.album,
+      artista: album.artista,
+      precio: album.precio,
+      imagen: album.imagen,
+      categoria: album.categoria,
+    }
+    
+    agregarAlCarrito(productoCarrito)
+    abrirCarrito()
+  }
+
   return (
     <div className="paginaAlbums">
-      <section className="productos">
-        <div className="titulo">
-          <h1>Productos</h1>
-        </div>
-        <div className="contenedorProductos">
-          {categorias.map((categoria) => {
-            const activa = categoriaSeleccionada === categoria.id
-            return (
-              <button
-                type="button"
-                key={categoria.id}
-                className={`producto${activa ? ' activo' : ''}`}
-                onClick={() => alternarCategoria(categoria.id)}
-              >
-                <img src={categoria.imagen} alt={categoria.nombre} />
-                <p>{categoria.nombre}</p>
-              </button>
-            )
-          })}
-        </div>
-      </section>
+      <CategoriasAlbums
+        categorias={categorias}
+        categoriaSeleccionada={categoriaSeleccionada}
+        onSeleccionarCategoria={manejarSeleccionCategoria}
+      />
 
       <AlbumsFilters
         refEdicion={refEdicion}
@@ -137,26 +142,26 @@ export function Albums() {
       />
 
       <div className="titulo">
-        <h2>Álbums</h2>
+        <h2>Productos</h2>
       </div>
 
-      <section className="Album">
+      <section className="Instrumentos">
         <div className="productGrid">
           {listaFiltrada.map((album) => (
             <Link
-              key={`${album.nombre}-${album.descripcion}`}
+              key={`${album.album}-${album.artista}-${album.categoria}`}
               to="/productos"
               state={album}
               className="productLink"
             >
               <ProductCard
                 imageSrc={album.imagen}
-                imageAlt={album.nombre}
+                imageAlt={album.album}
               >
-                <h3>{album.nombre}</h3>
-                <p>{album.descripcion}</p>
+                <h3>{album.album}</h3>
+                <p>{album.artista}</p>
                 <span className="precio">{formatearPrecio(album.precio)}</span>
-                <BottonComprar />
+                <BottonComprar onClick={(e) => manejarAgregarAlCarrito(e, album)} />
               </ProductCard>
             </Link>
           ))}
