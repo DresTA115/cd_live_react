@@ -1,0 +1,131 @@
+.producto-carrito {
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 15px;
+  padding: 15px;
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 15px;
+  transition: all 0.3s ease;
+}
+
+.producto-carrito:hover {
+  border-color: #fff;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
+
+.producto-imagen-container {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.producto-imagen-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+.producto-info {
+  flex: 1;
+}
+
+.producto-info h3 {
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0 0 5px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.producto-descripcion {
+  color: #aaa;
+  font-size: 0.85rem;
+  margin: 0 0 8px 0;
+}
+
+.producto-precio {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.producto-controles {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.cantidad-controles {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 5px 10px;
+}
+
+.cantidad-controles button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
+}
+
+.cantidad-controles button:hover {
+  color: #ff4444;
+}
+
+.cantidad-controles span {
+  color: #fff;
+  font-weight: 600;
+  min-width: 30px;
+  text-align: center;
+}
+
+.btn-eliminar {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.btn-eliminar:hover {
+  transform: scale(1.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .producto-carrito {
+    grid-template-columns: 60px 1fr auto;
+  }
+
+  .producto-imagen-container {
+    width: 60px;
+    height: 60px;
+  }
+
+  .producto-imagen-container img {
+    width: 100%;
+    height: 100%;
+  }
+}

@@ -1,0 +1,136 @@
+.carrito-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.carrito-container {
+  background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+  border-radius: 30px;
+  width: min(900px, 100%);
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.carrito-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.carrito-header h2 {
+  color: #fff;
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  font-weight: 600;
+  margin: 0;
+}
+
+.btn-cerrar {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2.5rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
+}
+
+.btn-cerrar:hover {
+  color: #ff4444;
+}
+
+.carrito-contenido {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 20px;
+  padding: 20px 30px;
+  overflow: hidden;
+  flex: 1;
+}
+
+/* Lista de productos */
+.carrito-productos {
+  overflow-y: auto;
+  padding-right: 10px;
+  max-height: calc(90vh - 150px);
+}
+
+/* Scrollbar personalizado */
+.carrito-productos::-webkit-scrollbar {
+  width: 6px;
+}
+
+.carrito-productos::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.carrito-productos::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
+
+.carrito-productos::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.carrito-vacio {
+  color: #888;
+  text-align: center;
+  padding: 40px;
+  font-size: 1.1rem;
+}
+
+/* Panel lateral */
+.carrito-lateral {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+  padding-right: 5px;
+  max-height: calc(90vh - 150px);
+}
+
+.carrito-lateral::-webkit-scrollbar {
+  width: 4px;
+}
+
+.carrito-lateral::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.carrito-lateral::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .carrito-contenido {
+    grid-template-columns: 1fr;
+  }
+
+  .carrito-lateral {
+    max-height: none;
+  }
+}

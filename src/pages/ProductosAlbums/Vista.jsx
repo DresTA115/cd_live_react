@@ -1,13 +1,12 @@
 import './Vista.css'
 import { useLocation, Link } from 'react-router-dom'
 import { PresentacionAlbums } from '../../components/PresentacionAlbums/PresentacionAlbums'
-import { Albums } from '../Albums/Albums'
 
 export function Vista() {
   const location = useLocation()
-  const Albums = location.state
+  const album = location.state
 
-  if (!Albums) {
+  if (!album) {
     return (
       <div className="errorContainer">
         <p>No hay datos disponibles</p>
@@ -18,9 +17,8 @@ export function Vista() {
 
   return (
     <div className="paginaProducto">
-          <h1>Detalle del Producto</h1>  
-        
-      <PresentacionProducto producto={Albums} />
+      <h1>Detalle del Producto</h1>  
+      <PresentacionAlbums Vista={album} />
       <Link to="/Albums" className="volverLink">Volver a Albums</Link>
     </div>
   )

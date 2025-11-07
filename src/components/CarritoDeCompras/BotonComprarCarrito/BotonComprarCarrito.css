@@ -1,0 +1,38 @@
+/* Botón de compra del carrito */
+.btn-comprar-carrito {
+  background: #a1182d;
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  box-shadow: 0 4px 15px rgba(161, 24, 45, 0.3);
+  width: 100%;
+}
+
+.btn-comprar-carrito:hover {
+  background: #8a1426;
+  box-shadow: 0 6px 20px rgba(161, 24, 45, 0.5);
+  transform: translateY(-2px);
+}
+
+.btn-comprar-carrito:active {
+  transform: translateY(0);
+}
+
+.btn-comprar-carrito:disabled {
+  background: #555;
+  cursor: not-allowed;
+  box-shadow: none;
+  opacity: 0.6;
+}
+
+.btn-comprar-carrito:disabled:hover {
+  transform: none;
+  background: #555;
+}

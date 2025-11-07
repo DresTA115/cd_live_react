@@ -8,6 +8,7 @@ import { obtenerAsset } from '@data/obtenerAsset'
 import { BottonComprar } from '@components/common/BottonComprar/BottonComprar'
 import { ProductCard } from '@components/common/ProductCard/ProductCard'
 import { CategoriasInstrumentos } from '@components/CategoriasInstrumentos/CategoriasInstrumentos'
+import { useCarrito } from '../../context/useCarrito'
 
 const instrumentos = instrumentosData.map((instrumento) => ({
   ...instrumento,
@@ -31,6 +32,7 @@ function formatearPrecio(valor) {
 
 export function Instrumentos() {
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null)
+  const { agregarAlCarrito, abrirCarrito } = useCarrito()
 
   const manejarSeleccionCategoria = (id) => {
     setCategoriaSeleccionada((actual) => (actual === id ? null : id))
@@ -47,6 +49,23 @@ export function Instrumentos() {
       return item.categoria === categoriaSeleccionada
     })
   }, [categoriaSeleccionada])
+
+  const manejarAgregarAlCarrito = (evento, instrumento) => {
+    evento.preventDefault()
+    evento.stopPropagation()
+    
+    const productoCarrito = {
+      id: `${instrumento.nombre}-${instrumento.descripcion}`,
+      titulo: instrumento.nombre,
+      artista: instrumento.descripcion,
+      precio: formatearPrecio(instrumento.precio),
+      imagen: instrumento.imagen,
+      categoria: instrumento.categoria,
+    }
+    
+    agregarAlCarrito(productoCarrito)
+    abrirCarrito()
+  }
 
   return (
     <div className="paginaInstrumentos">
@@ -76,7 +95,7 @@ export function Instrumentos() {
                 <h3>{instrumento.nombre}</h3>
                 <p>{instrumento.descripcion}</p>
                 <span className="precio">{formatearPrecio(instrumento.precio)}</span>
-                <BottonComprar />
+                <BottonComprar onClick={(e) => manejarAgregarAlCarrito(e, instrumento)} />
               </ProductCard>
             </Link>
           ))}
