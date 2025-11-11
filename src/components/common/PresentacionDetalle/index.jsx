@@ -1,0 +1,1 @@
+export { PresentacionDetalle } from './PresentacionDetalle'

@@ -1,0 +1,108 @@
+/* Estilos base comunes */
+.contenedorPresentacion {
+  display: flex;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.tarjetaProducto {
+  background: none;
+  border-radius: 8px;
+  padding: 1rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 700px;
+}
+
+.imagenProducto {
+  max-width: 100%;
+  height: 80%;
+  margin-bottom: 1rem;
+}
+
+.imagenProducto img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.precioProducto {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #faf9f9;
+  margin-top: 1rem;
+}
+
+.descripcionProducto {
+  text-align: center;
+  line-height: 1.6;
+  color: #bbb6b6;
+}
+
+.nombre {
+  color: rgb(255, 255, 255);
+}
+
+/* Estilos específicos para álbumes (layout vertical) */
+.contenedorPresentacion.album {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contenedorPresentacion.album .tarjetaProducto {
+  width: 100%;
+  max-width: 600px;
+}
+
+.contenedorPresentacion.album .imagenProducto {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  aspect-ratio: 1;
+}
+
+.contenedorPresentacion.album .detallesProducto {
+  text-align: center;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.contenedorPresentacion.album .detallesProducto h2 {
+  color: rgb(255, 255, 255);
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.contenedorPresentacion.album .descripcion {
+  color: #bbb6b6;
+  font-size: 1.2rem;
+  margin: 1rem 0;
+}
+
+.contenedorPresentacion.album .precio {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #faf9f9;
+  margin: 1.5rem 0;
+}
+
+.contenedorPresentacion.album .categoria {
+  color: #bbb6b6;
+  margin: 0.5rem 0 1.5rem 0;
+  font-size: 1rem;
+}
+
+/* Estilos específicos para instrumentos (layout horizontal) */
+.contenedorPresentacion.instrumento {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.contenedorPresentacion.instrumento .tarjetaProducto {
+  flex: 1;
+}

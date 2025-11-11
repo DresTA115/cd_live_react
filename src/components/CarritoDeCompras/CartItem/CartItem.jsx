@@ -1,4 +1,5 @@
 import './CartItem.css';
+import { obtenerAsset } from '../../../data/obtenerAsset';
 
 const CartItem = ({ item, onIncrementar, onDecrementar, onEliminar }) => {
   const formatearPrecio = (precio) => {
@@ -16,7 +17,7 @@ const CartItem = ({ item, onIncrementar, onDecrementar, onEliminar }) => {
   return (
     <div className="producto-carrito">
       <div className="producto-imagen-container">
-        <img src={item.imagen} alt={item.titulo} />
+        <img src={obtenerAsset(item.imagen)} alt={item.titulo} />
       </div>
       <div className="producto-info">
         <h3>{item.titulo}</h3>

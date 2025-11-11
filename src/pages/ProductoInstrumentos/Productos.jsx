@@ -1,13 +1,17 @@
 import './Productos.css'
-import { useLocation, Link } from 'react-router-dom'
-import { PresentacionProducto } from '../../components/PresentacionProducto/PresentacionProducto'
+import { useLocation, Link, useNavigate } from 'react-router-dom'
+import { PresentacionDetalle } from '@components/common/PresentacionDetalle'
 import instrumentos from '../../api/instrumentos.json'
 import { BottonComprar } from '@components/common/BottonComprar/BottonComprar'
+import { obtenerAsset } from '../../data/obtenerAsset'
+import { useCarrito } from '../../context/useCarrito'
 
 
 
 export function Productos() {
   const location = useLocation()
+  const navigate = useNavigate()
+  const { agregarAlCarrito, abrirCarrito } = useCarrito()
   const producto = location.state
   
   // Función para formatear precios
@@ -17,6 +21,29 @@ export function Productos() {
       currency: 'COP',
       maximumFractionDigits: 0,
     }).format(valor)
+  }
+
+  // Función para navegar a otro producto
+  const manejarClickProducto = (item) => {
+    navigate('/productos', { state: item })
+    window.scrollTo(0, 0) // Scroll al inicio de la página
+  }
+
+  // Función para agregar al carrito
+  const manejarAgregarAlCarrito = (e, item) => {
+    e.stopPropagation() // Evita que se active el clic en la tarjeta
+    
+    const productoCarrito = {
+      id: `${item.nombre}-${item.descripcion}`,
+      titulo: item.nombre,
+      artista: item.descripcion || '',
+      precio: formatearPrecio(item.precio),
+      imagen: item.imagen,
+      categoria: item.categoria,
+    }
+    
+    agregarAlCarrito(productoCarrito)
+    abrirCarrito()
   }
 
   if (!producto) {
@@ -40,7 +67,7 @@ export function Productos() {
     <div className="paginaProducto">
       <h1>Detalle del Producto</h1>
 
-      <PresentacionProducto producto={producto} />
+      <PresentacionDetalle producto={producto} tipo="instrumento" />
 
       <h2 className="similares">Productos similares</h2>
 
@@ -48,16 +75,23 @@ export function Productos() {
 
       <div className="contenedorSimilares">
         {productosSimilares.map((item, index) => (
-          <div className="tarjetaSimilares" key={index}>
+          <div 
+            className="tarjetaSimilares" 
+            key={index}
+            onClick={() => manejarClickProducto(item)}
+            style={{ cursor: 'pointer' }}
+          >
             <img
-              src={item.imagen}
+              src={obtenerAsset(item.imagen)}
               alt={item.nombre}
               className="imagenSimilares"
             />
             <h3 className='nombreSimilares'>{item.nombre}</h3>
             <p className='descripcionSimilares'>{item.descripcion}</p>
             <p className="precio">{formatearPrecio(item.precio)}</p>
-            <BottonComprar onClick={(e) => manejarAgregarAlCarrito(e, instrumento)} />
+            <BottonComprar 
+              onClick={(e) => manejarAgregarAlCarrito(e, item)} 
+            />
           </div>
         ))}
       </div>
