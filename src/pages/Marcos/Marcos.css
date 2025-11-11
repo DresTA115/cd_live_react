@@ -289,3 +289,35 @@
   font-size: 0.9rem;
   color: rgba(245, 245, 245, 0.7);
 }
+
+.producto-detalle {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 40px;
+}
+
+.producto-titulo {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.producto-descripcion {
+  color: #ccc;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.producto-compra {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.producto-precio {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #fff;
+}
