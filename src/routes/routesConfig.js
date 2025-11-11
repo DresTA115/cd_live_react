@@ -6,7 +6,7 @@ import { Instrumentos } from '@pages/Instrumentos'
 import { Marcos } from '@pages/Marcos'
 import { Buscador } from '@pages/Buscador'
 import { Productos } from '@pages/ProductoInstrumentos'
-import { Vista } from '@pages/ProductosAlbums'
+import { ProductoAlbums } from '@pages/ProductosAlbums'
 
 const withElement = (Component, config) => ({ ...config, element: createElement(Component) })
 
@@ -17,5 +17,5 @@ export const routesConfig = [
   withElement(Marcos, { id: 'marcos', path: 'marcos' }),
   withElement(Buscador, { id: 'buscar', path: 'buscar' }),
   withElement(Productos, { id: 'producto-instrumentos', path: 'productos' }),
-  withElement(Vista, { id: 'producto-albums', path: 'vista-album' }),
+  withElement(ProductoAlbums, { id: 'producto-albums', path: 'vista-album' }),
 ]

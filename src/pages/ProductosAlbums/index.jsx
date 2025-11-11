@@ -1,1 +1,1 @@
-export { Vista } from './Vista'
+export { ProductoAlbums } from './ProductoAlbums'

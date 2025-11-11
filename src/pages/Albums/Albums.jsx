@@ -150,7 +150,7 @@ export function Albums() {
           {listaFiltrada.map((album) => (
             <Link
               key={`${album.album}-${album.artista}-${album.categoria}`}
-              to="/productos"
+              to="/vista-album"
               state={album}
               className="productLink"
             >

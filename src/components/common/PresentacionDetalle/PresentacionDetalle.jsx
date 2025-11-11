@@ -59,17 +59,29 @@ export function PresentacionDetalle({ producto, tipo = 'instrumento' }) {
 
   // Renderizado para álbumes
   if (tipo === 'album') {
+    const imagenUrl = obtenerAsset(producto.imagen) || producto.imagen
+    console.log('Album imagen:', producto.imagen, '-> URL:', imagenUrl)
+    
     return (
       <div className="contenedorPresentacion album">
+        {/* Primera tarjeta: Imagen */}
         <article className="tarjetaProducto">
-          <div className="imagenProducto">
-            <img src={obtenerAsset(producto.imagen)} alt={producto.album} />
-          </div>
+          {producto.imagen && (
+            <div className="imagenProducto">
+              <img 
+                src={imagenUrl} 
+                alt={producto.album}
+              />
+            </div>
+          )}
+        </article>
+
+        {/* Segunda tarjeta: Detalles */}
+        <article className="tarjetaProducto">
           <div className="detallesProducto">
             <h2>{producto.album}</h2>
             <p className="descripcion">{producto.artista}</p>
             <p className="precio">{formatearPrecio(producto.precio)}</p>
-            <p className="categoria">Categoría: {producto.categoria}</p>
             <BottonComprar onClick={manejarAgregarAlCarrito} />
           </div>
         </article>
@@ -78,16 +90,20 @@ export function PresentacionDetalle({ producto, tipo = 'instrumento' }) {
   }
 
   // Renderizado para instrumentos (layout de 2 tarjetas)
+  const imagenUrlInstrumento = obtenerAsset(producto.imagen) || producto.imagen
+  console.log('Instrumento imagen:', producto.imagen, '-> URL:', imagenUrlInstrumento)
+  
   return (
     <div className="contenedorPresentacion instrumento">
       {/* Primera tarjeta: Imagen */}
       <article className="tarjetaProducto">
         {producto.imagen && (
-          <img 
-            src={obtenerAsset(producto.imagen)} 
-            alt={producto.nombre} 
-            className="imagenProducto" 
-          />
+          <div className="imagenProducto">
+            <img 
+              src={imagenUrlInstrumento} 
+              alt={producto.nombre}
+            />
+          </div>
         )}
       </article>
 
