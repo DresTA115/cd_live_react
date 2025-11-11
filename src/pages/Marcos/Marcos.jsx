@@ -1,9 +1,11 @@
 import { useEffect, useMemo, useState } from 'react'
 
+import { BottonComprar } from '@components/common/BottonComprar/BottonComprar'
 import './Marcos.css'
 
 import albumsData from '@api/albums.json'
 import { obtenerAsset } from '@data/obtenerAsset'
+
 
 export function Marcos() {
   const albums = useMemo(
@@ -199,6 +201,19 @@ export function Marcos() {
         </div>
       </div>
 
+      {/* ✅ NUEVO BLOQUE: Descripción + Botón de compra */}
+      <div className="producto-detalle">
+        <h3 className="producto-titulo">{nombreAlbumSeleccionado}</h3>
+        <p className="producto-descripcion">
+          Vinilo personalizado enmarcado con impresión de alta calidad. Ideal para decoración o regalo especial.
+        </p>
+        <div className="producto-compra">
+          <span className="producto-precio">$249.900</span>
+          <BottonComprar />
+        </div>
+      </div>
+      {/* ✅ FIN NUEVO BLOQUE */}
+
       <div className="opciones">
         <div className="colores">
           <h3>Colores del marco</h3>
@@ -231,7 +246,7 @@ export function Marcos() {
             {Object.keys(tamanos).map((t) => (
               <button
                 key={t}
-                className={`tamano-btn ${tamano === t ? "activo" : ""}`}
+                className={`tamano-btn ${tamano === t ? 'activo' : ''}`}
                 onClick={() => setTamano(t)}
               >
                 {t.charAt(0).toUpperCase() + t.slice(1)}
@@ -290,4 +305,4 @@ export function Marcos() {
   )
 }
 
-export default Marcos
+export default Marcos 
