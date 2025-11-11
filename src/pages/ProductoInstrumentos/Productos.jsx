@@ -96,8 +96,8 @@ export function Productos() {
         ))}
       </div>
 
-      <Link to="/albums" className="volverLink">
-        Volver
+      <Link to="/instrumentos" className="volverLink">
+        Volver a Intrumentos
       </Link>
     </div>
   )

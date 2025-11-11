@@ -1,4 +1,4 @@
-import './Vista.css'
+import './ProductoAlbums.css'
 import { useLocation, Link, useNavigate } from 'react-router-dom'
 import { PresentacionDetalle } from '@components/common/PresentacionDetalle'
 import albums from '../../api/albums.json'
@@ -7,7 +7,7 @@ import { obtenerAsset } from '../../data/obtenerAsset'
 import { useCarrito } from '../../context/useCarrito'
 
 
-export function Vista() {
+export function ProductoAlbums() {
   const location = useLocation()
   const navigate = useNavigate()
   const { agregarAlCarrito, abrirCarrito } = useCarrito()
@@ -47,9 +47,9 @@ export function Vista() {
 
   if (!album) {
     return (
-      <div className="errorContainerAlbums">
+      <div className="errorContainer">
         <p>No hay datos disponibles</p>
-        <Link to="/albums">Volver a Albums</Link>
+        <Link to="/albums">Volver</Link>
       </div>
     )
   }
@@ -63,18 +63,19 @@ export function Vista() {
     .slice(0, 4) // mostramos solo 4
 
   return (
-    <div className="paginaProductoAlbums">
+    <div className="paginaProducto">
       <h1>Detalle del Álbum</h1>
 
       <PresentacionDetalle producto={album} tipo="album" />
 
-      <h2 className="similaresAlbums">Álbumes similares</h2>
+      <h2 className="similares">Álbumes similares</h2>
 
       {/* Contenedor de tarjetas similares */}
-      <div className="contenedorSimilaresAlbums">
+
+      <div className="contenedorSimilares">
         {albumesSimilares.map((item, index) => (
           <div 
-            className="tarjetaSimilaresAlbums" 
+            className="tarjetaSimilares" 
             key={index}
             onClick={() => manejarClickAlbum(item)}
             style={{ cursor: 'pointer' }}
@@ -82,11 +83,11 @@ export function Vista() {
             <img
               src={obtenerAsset(item.imagen)}
               alt={item.album}
-              className="imagenSimilaresAlbums"
+              className="imagenSimilares"
             />
-            <h3 className='nombreSimilaresAlbums'>{item.album}</h3>
-            <p className='descripcionSimilaresAlbums'>{item.artista}</p>
-            <p className="precioAlbumSimilar">{formatearPrecio(item.precio)}</p>
+            <h3 className='nombreSimilares'>{item.album}</h3>
+            <p className='descripcionSimilares'>{item.artista}</p>
+            <p className="precio">{formatearPrecio(item.precio)}</p>
             <BottonComprar 
               onClick={(e) => manejarAgregarAlCarrito(e, item)} 
             />
@@ -94,7 +95,7 @@ export function Vista() {
         ))}
       </div>
 
-      <Link to="/albums" className="volverLinkAlbums">
+      <Link to="/albums" className="volverLink">
         Volver a Albums
       </Link>
     </div>

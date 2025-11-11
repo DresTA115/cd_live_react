@@ -28,6 +28,9 @@ export function obtenerAsset(ruta, { optional = false } = {}) {
   if (!recurso) {
     if (!optional) {
       console.warn(`[assets] No se encontró el recurso: ${ruta}`)
+      console.warn(`[assets] Ruta normalizada: ${rutaNormalizada}`)
+      console.warn(`[assets] Clave buscada: ${clave}`)
+      console.warn(`[assets] Recursos disponibles:`, Object.keys(recursosEstaticos))
     }
     return ''
   }
