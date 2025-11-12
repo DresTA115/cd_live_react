@@ -1,4 +1,5 @@
 import './Productos.css'
+import { useEffect } from 'react'
 import { useLocation, Link, useNavigate } from 'react-router-dom'
 import { PresentacionDetalle } from '@components/common/PresentacionDetalle'
 import instrumentos from '../../api/instrumentos.json'
@@ -13,6 +14,11 @@ export function Productos() {
   const navigate = useNavigate()
   const { agregarAlCarrito, abrirCarrito } = useCarrito()
   const producto = location.state
+
+  // Scroll al inicio cuando se monta el componente
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   
   // Función para formatear precios
   const formatearPrecio = (valor) => {

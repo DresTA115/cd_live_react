@@ -1,4 +1,5 @@
 import './ProductoAlbums.css'
+import { useEffect } from 'react'
 import { useLocation, Link, useNavigate } from 'react-router-dom'
 import { PresentacionDetalle } from '@components/common/PresentacionDetalle'
 import albums from '../../api/albums.json'
@@ -12,6 +13,11 @@ export function ProductoAlbums() {
   const navigate = useNavigate()
   const { agregarAlCarrito, abrirCarrito } = useCarrito()
   const album = location.state
+
+  // Scroll al inicio cuando se monta el componente
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   // Función para formatear precios
   const formatearPrecio = (valor) => {

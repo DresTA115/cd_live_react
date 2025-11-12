@@ -40,23 +40,29 @@ export function AlbumsMasVendidos() {
   return (
     <section className="albumsMasVendidos">
       <h2>Álbums más Vendidos</h2>
-  <div className="productGrid">
+      <div className="productGrid">
         {lista.map((album) => (
-          <ProductCard
+          <Link
             key={album.album}
-            imageSrc={album.imagen}
-            imageAlt={album.album}
+            to="/vista-album"
+            state={album}
+            className="productLink"
           >
-            <h3>{album.artista}</h3>
-            <p>
-              <strong>Álbum:</strong> {album.album}
-            </p>
-            <p>
-              <strong>Formato:</strong> {album.formato}
-            </p>
-            <span className="precio">{formatearPrecio(album.precio)}</span>
-            <BottonComprar />
-          </ProductCard>
+            <ProductCard
+              imageSrc={album.imagen}
+              imageAlt={album.album}
+            >
+              <h3>{album.artista}</h3>
+              <p>
+                <strong>Álbum:</strong> {album.album}
+              </p>
+              <p>
+                <strong>Formato:</strong> {album.formato}
+              </p>
+              <span className="precio">{formatearPrecio(album.precio)}</span>
+              <BottonComprar />
+            </ProductCard>
+          </Link>
         ))}
       </div>
     </section>
