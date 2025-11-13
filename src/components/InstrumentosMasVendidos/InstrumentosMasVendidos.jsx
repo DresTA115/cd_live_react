@@ -4,6 +4,7 @@ import instrumentosData from '@api/instrumentos.json'
 import { obtenerAsset } from '@data/obtenerAsset'
 import { BottonComprar } from '@components/common/BottonComprar/BottonComprar'
 import { ProductCard } from '@components/common/ProductCard/ProductCard'
+import { useCarrito } from '../../context/useCarrito'
 
 import './InstrumentosMasVendidos.css'
 
@@ -22,13 +23,11 @@ function obtenerLimite() {
   return window.innerWidth <= 768 ? 2 : 4
 }
 
-const instrumentos = instrumentosData.map((instrumento) => ({
-  ...instrumento,
-  imagen: obtenerAsset(instrumento.imagen, { optional: true }) || instrumento.imagen,
-}))
+const instrumentos = instrumentosData
 
 export function InstrumentosMasVendidos() {
   const [limite, setLimite] = useState(() => obtenerLimite())
+  const { agregarAlCarrito, abrirCarrito } = useCarrito()
 
   useEffect(() => {
     function manejarResize() {
@@ -44,6 +43,23 @@ export function InstrumentosMasVendidos() {
     [limite],
   )
 
+  const manejarComprar = (evento, instrumento) => {
+    evento.preventDefault()
+    evento.stopPropagation()
+
+    const productoCarrito = {
+      id: `${instrumento.nombre}-${instrumento.descripcion || instrumento.detalle}`,
+      titulo: instrumento.nombre,
+      artista: instrumento.descripcion || instrumento.detalle || '',
+      precio: formatearPrecio(instrumento.precio),
+      imagen: instrumento.imagen,
+      categoria: instrumento.categoria,
+    }
+
+    agregarAlCarrito(productoCarrito)
+    abrirCarrito()
+  }
+
   return (
     <section className="productosMasVendidos">
       <h2>Instrumentos más Vendidos</h2>
@@ -56,13 +72,13 @@ export function InstrumentosMasVendidos() {
             className="productLink"
           >
             <ProductCard
-              imageSrc={instrumento.imagen}
+              imageSrc={obtenerAsset(instrumento.imagen) || instrumento.imagen}
               imageAlt={instrumento.nombre}
             >
               <h3>{instrumento.nombre}</h3>
               <p>{instrumento.descripcion}</p>
               <span className="precio">{formatearPrecio(instrumento.precio)}</span>
-              <BottonComprar />
+              <BottonComprar onClick={(e) => manejarComprar(e, instrumento)} />
             </ProductCard>
           </Link>
         ))}

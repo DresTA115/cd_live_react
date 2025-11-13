@@ -10,10 +10,7 @@ import { ProductCard } from '@components/common/ProductCard/ProductCard'
 import { CategoriasInstrumentos } from '@components/CategoriasInstrumentos/CategoriasInstrumentos'
 import { useCarrito } from '../../context/useCarrito'
 
-const instrumentos = instrumentosData.map((instrumento) => ({
-  ...instrumento,
-  imagen: obtenerAsset(instrumento.imagen, { optional: true }) || instrumento.imagen,
-}))
+const instrumentos = instrumentosData
 
 const categorias = [
   { id: 'cuerda', nombre: 'Cuerda', imagen: obtenerAsset('img/instrumentos/LogoCuerda.png') },
@@ -89,7 +86,7 @@ export function Instrumentos() {
               className="productLink"
             >
               <ProductCard
-                imageSrc={instrumento.imagen}
+                imageSrc={obtenerAsset(instrumento.imagen) || instrumento.imagen}
                 imageAlt={instrumento.nombre}
               >
                 <h3>{instrumento.nombre}</h3>

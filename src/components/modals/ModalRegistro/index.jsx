@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { obtenerAsset } from '@data/obtenerAsset'
 
 import './ModalRegistro.css'
@@ -18,6 +19,7 @@ const estadoInicial = {
 
 export function ModalRegistro({ abierto, onCerrar, onIrLogin, onRegistroExitoso }) {
   const [formulario, setFormulario] = useState(estadoInicial)
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (!abierto) {
@@ -55,6 +57,14 @@ export function ModalRegistro({ abierto, onCerrar, onIrLogin, onRegistroExitoso 
     }
     setFormulario(estadoInicial)
     onRegistroExitoso()
+    // Guardar sesión iniciada
+    localStorage.setItem('sesionIniciada', 'true')
+    // Redirigir a la página de usuario después de cerrar el modal de confirmación
+    setTimeout(() => {
+      navigate('/usuario')
+      // Forzar recarga del header
+      window.dispatchEvent(new Event('storage'))
+    }, 100)
   }
 
   return (

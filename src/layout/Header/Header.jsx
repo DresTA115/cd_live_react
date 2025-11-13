@@ -11,6 +11,23 @@ export function Header({ onOpenLogin }) {
   const [query, setQuery] = useState('')
   const { abrirCarrito, obtenerCantidadTotal } = useCarrito()
   const cantidadCarrito = obtenerCantidadTotal()
+  
+  // Verificar si hay sesión iniciada
+  const [sesionIniciada, setSesionIniciada] = useState(false)
+
+  useEffect(() => {
+    // Verificar si hay una sesión guardada
+    const verificarSesion = () => {
+      const sesion = localStorage.getItem('sesionIniciada')
+      setSesionIniciada(sesion === 'true')
+    }
+
+    verificarSesion()
+
+    // Escuchar cambios en localStorage
+    window.addEventListener('storage', verificarSesion)
+    return () => window.removeEventListener('storage', verificarSesion)
+  }, [])
 
   useEffect(() => {
     if (location.pathname !== '/buscar') {
@@ -35,6 +52,16 @@ export function Header({ onOpenLogin }) {
 
   function manejarExplorar() {
     navigate('/buscar')
+  }
+
+  function manejarClickCuenta() {
+    if (sesionIniciada) {
+      // Si hay sesión, ir a la página de usuario
+      navigate('/usuario')
+    } else {
+      // Si no hay sesión, abrir modal de login
+      onOpenLogin()
+    }
   }
 
   return (
@@ -74,7 +101,7 @@ export function Header({ onOpenLogin }) {
       </form>
 
       <nav className="UsuarioCarrito" aria-label="Acciones de usuario">
-        <button type="button" className="Cuenta" onClick={onOpenLogin} aria-label="Abrir inicio de sesión">
+        <button type="button" className="Cuenta" onClick={manejarClickCuenta} aria-label="Abrir inicio de sesión">
           <span className="material-symbols-outlined">person</span>
         </button>
         <button type="button" className="carrito" aria-label="Ver carrito" onClick={abrirCarrito}>
