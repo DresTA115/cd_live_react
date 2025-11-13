@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { obtenerAsset } from '@data/obtenerAsset'
 
 import './ModalLogin.css'
@@ -8,6 +9,7 @@ const videoFondo = obtenerAsset('video/308104_medium.mp4')
 export function ModalLogin({ abierto, onCerrar, onIrRegistro }) {
   const [correo, setCorreo] = useState('')
   const [clave, setClave] = useState('')
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (!abierto) {
@@ -30,10 +32,15 @@ export function ModalLogin({ abierto, onCerrar, onIrRegistro }) {
 
   function manejarEnvio(evento) {
     evento.preventDefault()
-    alert('Iniciando sesión...')
     setCorreo('')
     setClave('')
     onCerrar()
+    // Guardar sesión iniciada
+    localStorage.setItem('sesionIniciada', 'true')
+    // Redirigir a la página de usuario
+    navigate('/usuario')
+    // Forzar recarga del header
+    window.dispatchEvent(new Event('storage'))
   }
 
   return (

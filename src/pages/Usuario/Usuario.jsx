@@ -1,13 +1,16 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import './Usuario.css'
 
 export function Usuario() {
+  const navigate = useNavigate()
   const [usuario, setUsuario] = useState({
     nombre: 'Nicolas Moreno Zapata',
     celular: '+573145502380',
     email: 'NicolasMorenoP@gmail.com',
     direccionActual: 'Cr43 # 25 bb 31',
-    tarjetaEnUso: '1112345567889'
+    tarjetaEnUso: '1112345567889',
+    imagenPerfil: null
   })
 
   const [pedido] = useState({
@@ -30,16 +33,97 @@ export function Usuario() {
   const [mostrarModalTarjeta, setMostrarModalTarjeta] = useState(false)
 
   const [datosTemp, setDatosTemp] = useState({})
+  const [direccionTemp, setDireccionTemp] = useState('')
+  const [tarjetaTemp, setTarjetaTemp] = useState('')
 
   const abrirModalDatos = () => {
     setDatosTemp({ ...usuario })
     setMostrarModalDatos(true)
   }
 
+  const abrirModalDireccion = () => {
+    setDireccionTemp(usuario.direccionActual || '')
+    setMostrarModalDireccion(true)
+  }
+
+  const abrirModalTarjeta = () => {
+    setTarjetaTemp(usuario.tarjetaEnUso || '')
+    setMostrarModalTarjeta(true)
+  }
+
   const guardarDatos = () => {
     setUsuario({ ...datosTemp })
+    // Guardar en localStorage
+    localStorage.setItem('datosUsuario', JSON.stringify(datosTemp))
     setMostrarModalDatos(false)
   }
+
+  const guardarDireccion = () => {
+    setUsuario(prev => ({ ...prev, direccionActual: direccionTemp }))
+    // Guardar en localStorage
+    const datosActuales = JSON.parse(localStorage.getItem('datosUsuario') || '{}')
+    localStorage.setItem('datosUsuario', JSON.stringify({ ...datosActuales, direccionActual: direccionTemp }))
+    setMostrarModalDireccion(false)
+  }
+
+  const guardarTarjeta = () => {
+    setUsuario(prev => ({ ...prev, tarjetaEnUso: tarjetaTemp }))
+    // Guardar en localStorage
+    const datosActuales = JSON.parse(localStorage.getItem('datosUsuario') || '{}')
+    localStorage.setItem('datosUsuario', JSON.stringify({ ...datosActuales, tarjetaEnUso: tarjetaTemp }))
+    setMostrarModalTarjeta(false)
+  }
+
+  const cerrarSesion = () => {
+    localStorage.removeItem('sesionIniciada')
+    window.dispatchEvent(new Event('storage'))
+    navigate('/')
+  }
+
+  const manejarCambioImagen = (evento) => {
+    const archivo = evento.target.files[0]
+    if (archivo) {
+      // Verificar que sea una imagen
+      if (!archivo.type.startsWith('image/')) {
+        alert('Por favor selecciona un archivo de imagen')
+        return
+      }
+
+      // Crear URL temporal para la imagen
+      const reader = new FileReader()
+      reader.onloadend = () => {
+        setUsuario(prev => ({
+          ...prev,
+          imagenPerfil: reader.result
+        }))
+        // Guardar en localStorage
+        localStorage.setItem('imagenPerfil', reader.result)
+      }
+      reader.readAsDataURL(archivo)
+    }
+  }
+
+  const eliminarImagen = () => {
+    setUsuario(prev => ({
+      ...prev,
+      imagenPerfil: null
+    }))
+    localStorage.removeItem('imagenPerfil')
+  }
+
+  // Cargar imagen guardada al iniciar
+  useEffect(() => {
+    const imagenGuardada = localStorage.getItem('imagenPerfil')
+    const datosGuardados = localStorage.getItem('datosUsuario')
+    
+    if (imagenGuardada || datosGuardados) {
+      setUsuario(prev => ({
+        ...prev,
+        ...(datosGuardados ? JSON.parse(datosGuardados) : {}),
+        imagenPerfil: imagenGuardada || prev.imagenPerfil
+      }))
+    }
+  }, [])
 
   return (
     <div className="paginaUsuario">
@@ -49,9 +133,31 @@ export function Usuario() {
           <div className="tarjetaUsuario">
             <div className="imagenUsuario">
               <div className="avatarPlaceholder">
-                <span className="iniciales">
-                  {usuario.nombre.split(' ').map(n => n[0]).join('').slice(0, 2)}
-                </span>
+                {usuario.imagenPerfil ? (
+                  <img src={usuario.imagenPerfil} alt="Foto de perfil" className="fotoPerfil" />
+                ) : (
+                  <span className="iniciales">
+                    {usuario.nombre.split(' ').map(n => n[0]).join('').slice(0, 2)}
+                  </span>
+                )}
+              </div>
+              <div className="botonesImagen">
+                <label htmlFor="inputImagen" className="botonCargarImagen">
+                  <span className="material-symbols-outlined">photo_camera</span>
+                  Cambiar Foto
+                </label>
+                <input
+                  id="inputImagen"
+                  type="file"
+                  accept="image/*"
+                  onChange={manejarCambioImagen}
+                  style={{ display: 'none' }}
+                />
+                {usuario.imagenPerfil && (
+                  <button className="botonEliminarImagen" onClick={eliminarImagen}>
+                    <span className="material-symbols-outlined">delete</span>
+                  </button>
+                )}
               </div>
             </div>
 
@@ -74,6 +180,9 @@ export function Usuario() {
               <button className="botonSecundario" onClick={() => setMostrarModalContrasena(true)}>
                 Cambiar Contraseña
               </button>
+              <button className="botonCerrarSesion" onClick={cerrarSesion}>
+                Cerrar Sesión
+              </button>
             </div>
 
             <div className="seccionDireccion">
@@ -82,7 +191,7 @@ export function Usuario() {
                 <span className="valorSeccion">{usuario.direccionActual}</span>
               </div>
               <div className="botonesSeccion">
-                <button className="botonSecundario" onClick={() => setMostrarModalDireccion(true)}>
+                <button className="botonSecundario" onClick={abrirModalDireccion}>
                   Agregar Direccion
                 </button>
                 <button className="botonBorrar">Borrar</button>
@@ -95,7 +204,7 @@ export function Usuario() {
                 <span className="valorSeccion">{usuario.tarjetaEnUso}</span>
               </div>
               <div className="botonesSeccion">
-                <button className="botonSecundario" onClick={() => setMostrarModalTarjeta(true)}>
+                <button className="botonSecundario" onClick={abrirModalTarjeta}>
                   Agregar tarjeta
                 </button>
                 <button className="botonBorrar">Borrar</button>
@@ -231,21 +340,18 @@ export function Usuario() {
       {mostrarModalDireccion && (
         <div className="modalOverlay" onClick={() => setMostrarModalDireccion(false)}>
           <div className="modalContenido" onClick={(e) => e.stopPropagation()}>
-            <h3>Agregar Dirección</h3>
+            <h3>Cambiar Dirección</h3>
             <div className="formGroup">
               <label>Dirección</label>
-              <input type="text" placeholder="Ej: Cr43 # 25 bb 31" />
-            </div>
-            <div className="formGroup">
-              <label>Ciudad</label>
-              <input type="text" />
-            </div>
-            <div className="formGroup">
-              <label>País</label>
-              <input type="text" />
+              <input 
+                type="text" 
+                placeholder="Ej: Cr43 # 25 bb 31"
+                value={direccionTemp}
+                onChange={(e) => setDireccionTemp(e.target.value)}
+              />
             </div>
             <div className="botonesModal">
-              <button className="botonGuardar">Guardar</button>
+              <button className="botonGuardar" onClick={guardarDireccion}>Guardar</button>
               <button className="botonCancelar" onClick={() => setMostrarModalDireccion(false)}>Cancelar</button>
             </div>
           </div>
@@ -256,27 +362,19 @@ export function Usuario() {
       {mostrarModalTarjeta && (
         <div className="modalOverlay" onClick={() => setMostrarModalTarjeta(false)}>
           <div className="modalContenido" onClick={(e) => e.stopPropagation()}>
-            <h3>Agregar Tarjeta</h3>
+            <h3>Cambiar Tarjeta</h3>
             <div className="formGroup">
               <label>Número de Tarjeta</label>
-              <input type="text" placeholder="1234 5678 9012 3456" maxLength="16" />
-            </div>
-            <div className="formGroup">
-              <label>Nombre en la Tarjeta</label>
-              <input type="text" />
-            </div>
-            <div className="formRow">
-              <div className="formGroup">
-                <label>Fecha de Expiración</label>
-                <input type="text" placeholder="MM/AA" />
-              </div>
-              <div className="formGroup">
-                <label>CVV</label>
-                <input type="text" placeholder="123" maxLength="3" />
-              </div>
+              <input 
+                type="text" 
+                placeholder="1234567890123456" 
+                maxLength="16"
+                value={tarjetaTemp}
+                onChange={(e) => setTarjetaTemp(e.target.value)}
+              />
             </div>
             <div className="botonesModal">
-              <button className="botonGuardar">Guardar</button>
+              <button className="botonGuardar" onClick={guardarTarjeta}>Guardar</button>
               <button className="botonCancelar" onClick={() => setMostrarModalTarjeta(false)}>Cancelar</button>
             </div>
           </div>

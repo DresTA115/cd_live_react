@@ -4,13 +4,11 @@ import albumsData from '@api/albums.json'
 import { obtenerAsset } from '@data/obtenerAsset'
 import { BottonComprar } from '@components/common/BottonComprar/BottonComprar'
 import { ProductCard } from '@components/common/ProductCard/ProductCard'
+import { useCarrito } from '../../context/useCarrito'
 
 import './AlbumsMasVendidos.css'
 
-const albums = albumsData.map((album) => ({
-  ...album,
-  imagen: obtenerAsset(album.imagen, { optional: true }) || album.imagen,
-}))
+const albums = albumsData
 
 function formatearPrecio(valor) {
   return new Intl.NumberFormat('es-CO', {
@@ -22,6 +20,7 @@ function formatearPrecio(valor) {
 
 export function AlbumsMasVendidos() {
   const [limite, setLimite] = useState(() => obtenerLimite())
+  const { agregarAlCarrito, abrirCarrito } = useCarrito()
 
   useEffect(() => {
     function manejarResize() {
@@ -37,6 +36,23 @@ export function AlbumsMasVendidos() {
     [limite],
   )
 
+  const manejarComprar = (evento, album) => {
+    evento.preventDefault()
+    evento.stopPropagation()
+
+    const productoCarrito = {
+      id: `${album.album}-${album.artista}-${album.categoria}`,
+      titulo: album.album,
+      artista: album.artista,
+      precio: formatearPrecio(album.precio),
+      imagen: album.imagen,
+      categoria: album.categoria,
+    }
+
+    agregarAlCarrito(productoCarrito)
+    abrirCarrito()
+  }
+
   return (
     <section className="albumsMasVendidos">
       <h2>Álbums más Vendidos</h2>
@@ -49,7 +65,7 @@ export function AlbumsMasVendidos() {
             className="productLink"
           >
             <ProductCard
-              imageSrc={album.imagen}
+              imageSrc={obtenerAsset(album.imagen) || album.imagen}
               imageAlt={album.album}
             >
               <h3>{album.artista}</h3>
@@ -60,7 +76,7 @@ export function AlbumsMasVendidos() {
                 <strong>Formato:</strong> {album.formato}
               </p>
               <span className="precio">{formatearPrecio(album.precio)}</span>
-              <BottonComprar />
+              <BottonComprar onClick={(e) => manejarComprar(e, album)} />
             </ProductCard>
           </Link>
         ))}

@@ -11,10 +11,7 @@ import { CategoriasAlbums } from '@components/CategoriasAlbums/CategoriasAlbums'
 import { useCarrito } from '../../context/useCarrito'
 
 
-const albums = albumsData.map((album) => ({
-  ...album,
-  imagen: obtenerAsset(album.imagen, { optional: true }) || album.imagen,
-}))
+const albums = albumsData
 
 const categorias = [
   { id: 'Vinilo', nombre: 'Vinilos', imagen: obtenerAsset('img/logo/LogoVinilo.png') },
@@ -155,7 +152,7 @@ export function Albums() {
               className="productLink"
             >
               <ProductCard
-                imageSrc={album.imagen}
+                imageSrc={obtenerAsset(album.imagen) || album.imagen}
                 imageAlt={album.album}
               >
                 <h3>{album.album}</h3>

@@ -53,9 +53,25 @@ export function RouterApp() {
 
   const router = useMemo(() => {
     const LayoutWrapper = () => (
-      <MainLayout onOpenLogin={abrirLogin}>
-        <Outlet />
-      </MainLayout>
+      <>
+        <MainLayout onOpenLogin={abrirLogin}>
+          <Outlet />
+        </MainLayout>
+        
+        <ModalLogin abierto={loginAbierto} onCerrar={cerrarModales} onIrRegistro={abrirRegistro} />
+        <ModalRegistro
+          abierto={registroAbierto}
+          onCerrar={cerrarModales}
+          onIrLogin={abrirLogin}
+          onRegistroExitoso={mostrarTarjeta}
+        />
+        <ModalRegistroConfirmado
+          abierto={confirmacionRegistroAbierta}
+          onCerrar={cerrarConfirmacionRegistro}
+          onVerPerfil={cerrarConfirmacionRegistro}
+        />
+        <ModalTarjeta abierto={tarjetaAbierta} onCerrar={cerrarModales} onRegistroCompletado={finalizarRegistroConTarjeta} />
+      </>
     )
 
     return createBrowserRouter([
@@ -64,25 +80,7 @@ export function RouterApp() {
         children: routesConfig,
       },
     ])
-  }, [abrirLogin])
+  }, [abrirLogin, loginAbierto, registroAbierto, confirmacionRegistroAbierta, tarjetaAbierta, cerrarModales, abrirRegistro, mostrarTarjeta, cerrarConfirmacionRegistro, finalizarRegistroConTarjeta])
 
-  return (
-    <>
-      <RouterProvider router={router} />
-
-      <ModalLogin abierto={loginAbierto} onCerrar={cerrarModales} onIrRegistro={abrirRegistro} />
-      <ModalRegistro
-        abierto={registroAbierto}
-        onCerrar={cerrarModales}
-        onIrLogin={abrirLogin}
-        onRegistroExitoso={mostrarTarjeta}
-      />
-      <ModalRegistroConfirmado
-        abierto={confirmacionRegistroAbierta}
-        onCerrar={cerrarConfirmacionRegistro}
-        onVerPerfil={cerrarConfirmacionRegistro}
-      />
-      <ModalTarjeta abierto={tarjetaAbierta} onCerrar={cerrarModales} onRegistroCompletado={finalizarRegistroConTarjeta} />
-    </>
-  )
+  return <RouterProvider router={router} />
 }
